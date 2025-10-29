@@ -3,9 +3,8 @@ import React from 'react'
 const Applications = () => {
   return (
     <div>
-      Applications
-      <p>this is application page</p>
-
+      <h1>Applications</h1>
+      <p>ajke tomake onk sundor lagchilo!</p>
     </div>
   )
 }
