@@ -1,3 +1,8 @@
+For local environment variable please add:
+```
+VITE_CLERK_PUBLISHABLE_KEY=your_clerk_api_key
+```
+
 Tech use:
 1. [Vite + React](https://vite.dev/guide/) `npm create vite@latest`
 2. [Tailwindcss](https://tailwindcss.com/docs/installation/using-vite)
