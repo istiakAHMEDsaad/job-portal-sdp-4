@@ -25,13 +25,8 @@ const Navbar = () => {
               <p className='flex items-center gap-1'>
                 Hi,
                 <span className='italic'>
-                  {/* {user?.username ? user?.username.slice(0, 9) : ""}
-                  {user?.username && user?.username.length > 8 ? "..." : ""}
-                  {!user?.username
-                    ? user?.firstName + " " + user?.lastName
-                    : ""} */}
                   {user?.firstName && user?.lastName
-                    ? user?.firstName.slice(0, 9) + " " + user?.lastName.slice(0, 9)
+                    ? user?.firstName + " " + user?.lastName
                     : user?.username.slice(0, 9)}
                 </span>
               </p>
