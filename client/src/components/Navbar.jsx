@@ -13,10 +13,21 @@ const Navbar = () => {
 
         {/* Login Button */}
         {user ? (
-          <div className="flex items-center gap-3">
-            <Link to={"/applications"}>Applied Jobs</Link>
+          <div className='flex items-center gap-3'>
+            <Link
+              className='text-gray-600 hover:text-gray-900 hover:underline transition-all'
+              to={"/applications"}
+            >
+              Applied Jobs
+            </Link>
             <p> | </p>
-            <p>Hi, {user?.username}</p>
+            <p>
+              Hi,{" "}
+              <span className='italic'>
+                {user?.username.slice(0, 9)}
+                {user?.username.length > 8 ? "..." : ""}
+              </span>
+            </p>
             <UserButton />
           </div>
         ) : (
