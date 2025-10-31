@@ -41,3 +41,29 @@ __Step 6:__ :warning: After i merge the test branch to main branch please get th
 git checkout main
 git pull origin main
 ```
+
+- Optional :warning: ( Your local changes to the following files would be overwritten by merge) problem:
+
+  - __Solve 1:__
+  ```
+  # don’t need their local edits
+  git restore .
+
+  # or if some files were newly added
+  git reset --hard
+
+  # last pull code
+  git pull origin <branch-name>
+  ```
+  - __Solve 2:__
+  ```
+  # Save the uncommitted work
+  git stash
+
+  # Pull the latest code:
+  git pull origin <branch-name>
+
+  # Bring the saved work back:
+  git stash pop
+  ```
+  -
