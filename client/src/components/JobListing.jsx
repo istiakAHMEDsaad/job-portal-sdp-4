@@ -8,6 +8,8 @@ const JobListing = () => {
     useContext(AppContext);
 
   const [showFilter, setShowFilter] = useState(true);
+  const [currentPage, setCurrentpage] = useState(1);
+  const numOfCard = 6;
 
   return (
     <div className='container 2xl:px-20 mx-auto flex flex-col lg:flex-row max-lg:space-y-8 py-8'>
@@ -58,7 +60,7 @@ const JobListing = () => {
         </button>
 
         {/* Category Filter */}
-        <div className={showFilter ? '' : 'max-lg:hidden'}>
+        <div className={showFilter ? "" : "max-lg:hidden"}>
           <h4 className='font-medium text-lg py-4'>Search by Categories</h4>
 
           <ul className='space-y-4 text-gray-600'>
@@ -72,7 +74,7 @@ const JobListing = () => {
         </div>
 
         {/* Location Filter */}
-        <div className={showFilter ? '' : 'max-lg:hidden'}>
+        <div className={showFilter ? "" : "max-lg:hidden"}>
           <h4 className='font-medium text-lg py-4 pt-14'>Search by Location</h4>
 
           <ul className='space-y-4 text-gray-600'>
@@ -95,10 +97,57 @@ const JobListing = () => {
 
         {/* card container */}
         <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4'>
-          {jobs.map((job, index) => (
-            <JobCard key={index} job={job} />
-          ))}
+          {jobs
+            .slice((currentPage - 1) * numOfCard, currentPage * numOfCard)
+            .map((job, index) => (
+              <JobCard key={index} job={job} />
+            ))}
         </div>
+
+        {/* pagination */}
+        {jobs.length > 0 && (
+          <div className='flex items-center justify-center space-x-2 mt-10'>
+            {/* left arrow */}
+            <a href='#job-list'>
+              <img
+                onClick={() => setCurrentpage(Math.max(currentPage - 1), 1)}
+                src={assets.left_arrow_icon}
+                alt='<'
+              />
+            </a>
+
+            {Array.from({ length: Math.ceil(jobs.length / numOfCard) }).map(
+              (_, index) => (
+                <a href='#job-list'>
+                  <button
+                    onClick={() => setCurrentpage(index + 1)}
+                    className={`w-10 h-10 flex items-center justify-center border border-gray-300 rounded ${
+                      currentPage === index + 1
+                        ? "bg-blue-100 text-blue-500"
+                        : "text-gray-500"
+                    }`}
+                  >
+                    {index + 1}
+                  </button>
+                </a>
+              )
+            )}
+
+            {/* right arrow 1, 4 */}
+            <a href='#job-list'>
+              <img
+                onClick={() =>
+                  setCurrentpage(
+                    Math.min(currentPage + 1),
+                    Math.ceil(jobs.length / numOfCard)
+                  )
+                }
+                src={assets.right_arrow_icon}
+                alt='>'
+              />
+            </a>
+          </div>
+        )}
       </section>
     </div>
   );
