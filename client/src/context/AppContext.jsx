@@ -15,12 +15,24 @@ export const AppContextProvider = (props) => {
 
   // function to fetch job data
   const fetchJobs = async () => {
-    setJobs(jobsData)
-  }
+    setJobs(jobsData);
+  };
 
-  useEffect(()=>{
-    fetchJobs()
-  }, [])
+  useEffect(() => {
+    fetchJobs();
+  }, []);
+
+  /*useEffect(() => {
+    const jobData = async () => {
+      try {
+      } catch (err) {
+        alert(err.message);
+      }
+    };
+
+    jobData();
+
+  }, []);*/
 
   const value = {
     searchFilter,
