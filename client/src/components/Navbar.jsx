@@ -20,7 +20,8 @@ const Navbar = () => {
             >
               Applied Jobs
             </Link>
-            <div className='md:flex hidden items-center gap-2'>
+            <p className="maax-sm:flex md:hidden"> | </p>
+            <div className='md:flex max-sm:hidden items-center gap-2'>
               <p> | </p>
               <p className='flex items-center gap-1'>
                 Hi,

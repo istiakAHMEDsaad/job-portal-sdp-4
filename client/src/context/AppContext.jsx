@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { jobsData } from "../assets/assets";
 
 export const AppContext = createContext();
 
@@ -10,11 +11,36 @@ export const AppContextProvider = (props) => {
 
   const [isSearched, setIsSearched] = useState(false);
 
+  const [jobs, setJobs] = useState([]);
+
+  // function to fetch job data
+  const fetchJobs = async () => {
+    setJobs(jobsData);
+  };
+
+  useEffect(() => {
+    fetchJobs();
+  }, []);
+
+  /*useEffect(() => {
+    const jobData = async () => {
+      try {
+      } catch (err) {
+        alert(err.message);
+      }
+    };
+
+    jobData();
+
+  }, []);*/
+
   const value = {
     searchFilter,
     setSearchFilter,
     isSearched,
     setIsSearched,
+    jobs,
+    setJobs,
   };
 
   return (
