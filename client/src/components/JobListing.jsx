@@ -7,7 +7,7 @@ const JobListing = () => {
   const { searchFilter, isSearched, setSearchFilter, jobs } =
     useContext(AppContext);
 
-  const [showFilter, setShowFilter] = useState(true);
+  const [showFilter, setShowFilter] = useState(false);
   const [currentPage, setCurrentpage] = useState(1);
   const numOfCard = 6;
 
