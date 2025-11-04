@@ -7,7 +7,7 @@ const JobListing = () => {
   const { searchFilter, isSearched, setSearchFilter, jobs } =
     useContext(AppContext);
 
-  const [showFilter, setShowFilter] = useState(true);
+  const [showFilter, setShowFilter] = useState(false);
   const [currentPage, setCurrentpage] = useState(1);
   const numOfCard = 6;
 
@@ -183,7 +183,7 @@ const JobListing = () => {
 
             {Array.from({ length: Math.ceil(filteredJobs.length / numOfCard) }).map(
               (_, index) => (
-                <a href='#job-list'>
+                <a href='#job-list' key={index}>
                   <button
                     onClick={() => setCurrentpage(index + 1)}
                     className={`w-10 h-10 flex items-center justify-center border border-gray-300 rounded ${
