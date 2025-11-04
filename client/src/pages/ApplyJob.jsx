@@ -1,6 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
+import Loading from "../components/Loading";
+import Navbar from "../components/Navbar";
+import { assets } from "../assets/assets";
+import kconvert from "k-convert";
+import moment from "moment";
 
 const ApplyJob = () => {
   const { id } = useParams();
@@ -17,13 +22,67 @@ const ApplyJob = () => {
     }
   };
 
-  useEffect(()=>{
-    fetchJob();
-  }, [id])
+  useEffect(() => {
+    if (jobs.length > 0) {
+      fetchJob();
+    }
+  }, [id, jobs]);
 
-  return <div>
-    <p>Job id: {id}</p>
-  </div>;
+  const { companyId, title, location, level, salary, date } = jobData || {};
+
+  console.log(title);
+
+  return jobData ? (
+    <>
+      <Navbar />
+
+      {/* header section container */}
+      <div className='min-h-screen flex-col py-10 container px-4 2xl:px-20 mx-auto'>
+        {/* header section */}
+        <div className='bg-white text-black rounded-lg w-full'>
+          {/* left part */}
+          <div className='flex justify-center md:justify-between flex-wrap gap-8 px-14 py-20 mb-6 bg-sky-50 border border-sky-400 rounded-xl'>
+            {/* company data and details */}
+            <div className='flex flex-col md:flex-row items-center'>
+              <img
+                className='h-24 bg-white rounded-lg p-4 mr-4 max-md:mb-4 border border-gray-200'
+                src={companyId.image}
+                alt='logo'
+              />
+              <div className='text-center md:text-left text-neutral-700'>
+                <h1 className='text-2xl sm:text-4xl font-medium'>{title}</h1>
+                <div className='flex flex-row flex-wrap max-md:justify-center gap-y-2 gap-6 items-center text-gray-600 mt-2'>
+                  <span className="flex items-center gap-1">
+                    <img src={assets.suitcase_icon} alt='suitcase icon' />
+                    {companyId.name}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <img src={assets.location_icon} alt='location icon' />
+                    {location}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <img src={assets.person_icon} alt='person icon' />
+                    {level}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <img src={assets.money_icon} alt='money icon' />
+                    CTC: {kconvert.convertTo(salary)}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col justify-center text-end text-sm max-md:mx-auto max-md:text-center">
+              <button className="bg-blue-600 p-2.5 px-10 text-white rounded">Apply Now</button>
+              <p className="mt-1 text-gray-600">Posted {moment(date).fromNow()}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  ) : (
+    <Loading />
+  );
 };
 
 export default ApplyJob;
