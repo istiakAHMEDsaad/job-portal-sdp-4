@@ -18,7 +18,6 @@ const ApplyJob = () => {
     const data = jobs.filter((job) => job._id === id);
     if (data.length !== 0) {
       setJobData(data[0]);
-      console.log(data[0]);
     }
   };
 
@@ -28,9 +27,8 @@ const ApplyJob = () => {
     }
   }, [id, jobs]);
 
-  const { companyId, title, location, level, salary, date } = jobData || {};
-
-  console.log(title);
+  const { companyId, title, location, level, salary, date, description } =
+    jobData || {};
 
   return jobData ? (
     <>
@@ -52,19 +50,19 @@ const ApplyJob = () => {
               <div className='text-center md:text-left text-neutral-700'>
                 <h1 className='text-2xl sm:text-4xl font-medium'>{title}</h1>
                 <div className='flex flex-row flex-wrap max-md:justify-center gap-y-2 gap-6 items-center text-gray-600 mt-2'>
-                  <span className="flex items-center gap-1">
+                  <span className='flex items-center gap-1'>
                     <img src={assets.suitcase_icon} alt='suitcase icon' />
                     {companyId.name}
                   </span>
-                  <span className="flex items-center gap-1">
+                  <span className='flex items-center gap-1'>
                     <img src={assets.location_icon} alt='location icon' />
                     {location}
                   </span>
-                  <span className="flex items-center gap-1">
+                  <span className='flex items-center gap-1'>
                     <img src={assets.person_icon} alt='person icon' />
                     {level}
                   </span>
-                  <span className="flex items-center gap-1">
+                  <span className='flex items-center gap-1'>
                     <img src={assets.money_icon} alt='money icon' />
                     CTC: {kconvert.convertTo(salary)}
                   </span>
@@ -72,9 +70,24 @@ const ApplyJob = () => {
               </div>
             </div>
 
-            <div className="flex flex-col justify-center text-end text-sm max-md:mx-auto max-md:text-center">
-              <button className="bg-blue-600 p-2.5 px-10 text-white rounded">Apply Now</button>
-              <p className="mt-1 text-gray-600">Posted {moment(date).fromNow()}</p>
+            {/* apply now button */}
+            <div className='flex flex-col justify-center text-end text-sm max-md:mx-auto max-md:text-center'>
+              <button className='bg-blue-600 p-2.5 px-10 text-white rounded'>
+                Apply Now
+              </button>
+              <p className='mt-1 text-gray-600'>
+                Posted {moment(date).fromNow()}
+              </p>
+            </div>
+          </div>
+
+          <div className='flex flex-col lg:flex-row justify-between items-start'>
+            <div className='w-full lg:w-2/3'>
+              <h2 className='font-bold text-2xl mb-4'>Job Description</h2>
+              <div className="rich-text" dangerouslySetInnerHTML={{ __html: description }}></div>
+              <button className='bg-blue-600 p-2.5 px-10 text-white rounded mt-10'>
+                Apply Now
+              </button>
             </div>
           </div>
         </div>
