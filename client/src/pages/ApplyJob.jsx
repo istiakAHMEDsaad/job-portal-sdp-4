@@ -108,6 +108,7 @@ const ApplyJob = () => {
                 .map((job, index) => (
                   <JobCard key={index} job={job} />
                 ))}
+              {/* filter(() => true) */}
             </div>
           </div>
         </div>
