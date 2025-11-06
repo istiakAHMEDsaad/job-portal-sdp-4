@@ -1,15 +1,18 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { assets } from "../assets/assets";
+import { AppContext } from "../context/AppContext";
 
 const RecruiterLogin = () => {
   const [state, setState] = useState("Login");
+
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-
   const [image, setImage] = useState(false);
 
   const [isTextDataSubmitted, setIsTextDataSubmitted] = useState(false);
+
+  const { setShowRecruiterLogin } = useContext(AppContext);
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
@@ -18,6 +21,14 @@ const RecruiterLogin = () => {
       setIsTextDataSubmitted(true);
     }
   };
+
+  // scroll disable logic
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, []);
 
   return (
     <div className='absolute top-0 left-0 right-0 bottom-0 z-10 backdrop-blur-sm bg-black/30 flex justify-center items-center'>
@@ -95,14 +106,16 @@ const RecruiterLogin = () => {
             </div>
           </>
         )}
-        <p className='text-sm text-blue-600 my-4 cursor-pointer'>
-          Forget Password
-        </p>
+        {state === "Login" && (
+          <p className='text-sm text-blue-600 mt-4 cursor-pointer'>
+            Forget Password
+          </p>
+        )}
 
         {/* submit button */}
         <button
           type='submit'
-          className='bg-blue-600 w-full text-white py-2 rounded-full'
+          className='bg-blue-600 w-full text-white py-2 rounded-full mt-4'
         >
           {state === "Login"
             ? "login"
@@ -132,6 +145,12 @@ const RecruiterLogin = () => {
             </span>
           </p>
         )}
+        <img
+          onClick={() => setShowRecruiterLogin(false)}
+          className='absolute top-5 right-5 cursor-pointer bg-red-200 p-1 rounded-full'
+          src={assets.cross_icon}
+          alt='x'
+        />
       </form>
     </div>
   );
