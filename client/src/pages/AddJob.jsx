@@ -48,8 +48,8 @@ const AddJob = () => {
             className='w-full px-3 py-2 border-2 border-gray-300 rounded'
             onChange={(e) => setCategory(e.target.value)}
           >
-            {JobCategories.map((category, index) => (
-              <option key={index} value={category}>
+            {JobCategories.map((gory, index) => (
+              <option key={index} value={gory}>
                 {category}
               </option>
             ))}
@@ -63,8 +63,8 @@ const AddJob = () => {
             className='w-full px-3 py-2 border-2 border-gray-300 rounded'
             onChange={(e) => setLocation(e.target.value)}
           >
-            {JobLocations.map((location, index) => (
-              <option key={index} value={location}>
+            {JobLocations.map((loca, index) => (
+              <option key={index} value={loca}>
                 {location}
               </option>
             ))}
@@ -78,9 +78,12 @@ const AddJob = () => {
             className='w-full px-3 py-2 border-2 border-gray-300 rounded'
             onChange={(e) => setLevel(e.target.value)}
           >
-            <option value='Beginner Level'>Beginner Level</option>
+            {/* <option value='Beginner Level'>Beginner Level</option>
             <option value='Intermediate Level'>Intermediate Level</option>
-            <option value='Senior Level'>Senior Level</option>
+            <option value='Senior Level'>Senior Level</option> */}
+            <option value={level}>Beginner Level</option>
+            <option value={level}>Intermediate Level</option>
+            <option value={level}>Senior Level</option>
           </select>
         </div>
       </div>
@@ -93,6 +96,7 @@ const AddJob = () => {
           type='number'
           placeholder='$0000'
           min={0}
+          value={salary}
         />
       </div>
 
