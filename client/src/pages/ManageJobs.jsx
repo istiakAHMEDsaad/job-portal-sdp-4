@@ -1,50 +1,72 @@
-import { assets, viewApplicationsPageData } from "../assets/assets";
+import moment from "moment";
+import { manageJobsData } from "../assets/assets";
+import { useNavigate } from "react-router-dom";
 
 const ManageJobs = () => {
+  const navigate = useNavigate();
+
   return (
-    <div>
-      <div>
-        <table>
+    <div className='container p-4 max-w-5xl'>
+      <div className='overflow-x-auto'>
+        <table className='min-w-full bg-white border border-gray-200 max-sm:text-sm'>
           <thead>
             <tr>
-              <th>#</th>
-              <th>User Name</th>
-              <th>Job Title</th>
-              <th>Location</th>
-              <th>Resume</th>
-              <th>Actoin</th>
+              <th className='py-2 px-4 border-b border-gray-200 text-left max-sm:hidden'>
+                #
+              </th>
+              <th className='py-2 px-4 border-b border-gray-200 text-left'>
+                Job Title
+              </th>
+              <th className='py-2 px-4 border-b border-gray-200 text-left max-sm:hidden'>
+                Date
+              </th>
+              <th className='py-2 px-4 border-b border-gray-200 text-left max-sm:hidden'>
+                Location
+              </th>
+              <th className='py-2 px-4 border-b border-gray-200 text-center'>
+                Applicant
+              </th>
+              <th className='py-2 px-4 border-b border-gray-200 text-left'>
+                Visible
+              </th>
             </tr>
           </thead>
 
           <tbody>
-            {viewApplicationsPageData.map((applicant, index) => (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td>
-                  <img src={applicant.imgSrc} alt='image' />
-                  <span>{applicant.name}</span>
+            {manageJobsData.map((job, index) => (
+              <tr key={index} className='text-gray-700'>
+                <td className='py-2 px-4 border-b border-gray-200 max-sm:hidden'>
+                  {index + 1}
                 </td>
-                <td>{applicant.jobTitle}</td>
-                <td>{applicant.location}</td>
-                <td>
-                  <a href='#' target='_blank'>
-                    Resume{" "}
-                    <img src={assets.resume_download_icon} alt='download' />
-                  </a>
+                <td className='py-2 px-4 border-b border-gray-200'>
+                  {job.title}
                 </td>
-                <td>
-                  <div>
-                    <button>...</button>
-                    <div>
-                      <button>Accept</button>
-                      <button>Reject</button>
-                    </div>
-                  </div>
+                <td className='py-2 px-4 border-b border-gray-200 max-sm:hidden'>
+                  {moment(job.date).format("ll")}
+                </td>
+                <td className='py-2 px-4 border-b border-gray-200 max-sm:hidden'>
+                  {job.location}
+                </td>
+                <td className='py-2 px-4 border-b border-gray-200 text-center'>
+                  {job.applicants}
+                </td>
+                <td className='py-2 px-4 border-b border-gray-200'>
+                  <input className='scale-125 ml-4' type='checkbox' />
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+      </div>
+
+      {/* button */}
+      <div className='mt-4 flex justify-end'>
+        <button
+          onClick={() => navigate("/dashboard/add-job")}
+          className='bg-neutral-950 text-white py-2 px-4 rounded hover:bg-neutral-900 transition-colors cursor-pointer'
+        >
+          Add new job
+        </button>
       </div>
     </div>
   );
