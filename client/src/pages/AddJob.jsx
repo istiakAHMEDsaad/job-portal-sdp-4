@@ -48,30 +48,30 @@ const AddJob = () => {
             className='w-full px-3 py-2 border-2 border-gray-300 rounded'
             onChange={(e) => setCategory(e.target.value)}
           >
-            {JobCategories.map((gory, index) => (
-              <option key={index} value={gory}>
+            {JobCategories.map((category, index) => (
+              <option key={index} value={category}>
                 {category}
               </option>
             ))}
           </select>
         </div>
 
-        {/* category */}
+        {/* location */}
         <div>
           <p className='mb-2'>Job Location</p>
           <select
             className='w-full px-3 py-2 border-2 border-gray-300 rounded'
             onChange={(e) => setLocation(e.target.value)}
           >
-            {JobLocations.map((loca, index) => (
-              <option key={index} value={loca}>
+            {JobLocations.map((location, index) => (
+              <option key={index} value={location}>
                 {location}
               </option>
             ))}
           </select>
         </div>
 
-        {/* category */}
+        {/* level */}
         <div>
           <p className='mb-2'>Job Level</p>
           <select
