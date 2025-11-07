@@ -40,6 +40,7 @@ const EditPortfolio = () => {
     <div>
       <Navbar />
       <div>
+        <p className="text-2xl text-center py-8 text-gray-800">Update Your Information Here</p>
         <form
           onSubmit={handleSubmit}
           className='mx-auto grid max-w-lg grid-cols-1 gap-4 rounded-lg border border-gray-300 p-6 sm:grid-cols-2'
@@ -169,19 +170,37 @@ const EditPortfolio = () => {
             />
           </div>
 
+          {/* experience */}
+          <div className='md:col-span-2'>
+            <label
+              className='block text-sm font-medium text-gray-900'
+              for='experience'
+            >
+              Experience
+            </label>
+
+            <input
+              className='mt-1 w-full rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none px-3 py-2'
+              id='experience'
+              name='experience'
+              type='text'
+              placeholder='Tell your previous job experience (if no type none)'
+            />
+          </div>
+
           {/* description */}
           <div className='md:col-span-2'>
             <label
               className='block text-sm font-medium text-gray-900'
-              for='description'
+              for='about'
             >
               About
             </label>
 
             <textarea
               className='mt-1 w-full resize-none rounded-lg border border-gray-300 focus:border-blue-500 focus:outline-none px-3 py-2'
-              id='description'
-              name='description'
+              id='about'
+              name='about'
               rows='4'
               placeholder='Description here...'
             ></textarea>
