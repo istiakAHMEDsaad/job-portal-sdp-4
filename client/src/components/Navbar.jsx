@@ -14,7 +14,7 @@ const Navbar = () => {
 
   return (
     <div className='shadow py-4'>
-      <div className='container px-4 2xl:px-20 mx-auto flex justify-between items-center'>
+      <div className='container md:px-4 2xl:px-20 mx-auto flex justify-between items-center'>
         <img
           onClick={() => navigate("/")}
           className='cursor-pointer'
@@ -55,7 +55,7 @@ const Navbar = () => {
             </button>
             <button
               onClick={() => openSignIn()}
-              className='bg-blue-600 text-white px-6 sm:px-9 py-2 rounded-full'
+              className='bg-blue-600 hover:bg-blue-600/95 transition-colors text-white px-6 sm:px-9 py-2 rounded-full cursor-pointer'
             >
               Login
             </button>

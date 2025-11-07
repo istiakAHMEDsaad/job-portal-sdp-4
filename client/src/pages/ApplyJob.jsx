@@ -38,6 +38,7 @@ const ApplyJob = () => {
 
       {/* header section container */}
       <div className='min-h-screen flex-col py-10 container px-4 2xl:px-20 mx-auto'>
+        
         {/* header section */}
         <div className='bg-white text-black rounded-lg w-full'>
           {/* left part */}
