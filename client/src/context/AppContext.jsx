@@ -5,7 +5,6 @@ import { useUser } from "@clerk/clerk-react";
 export const AppContext = createContext();
 
 export const AppContextProvider = (props) => {
-  const { isLoaded, isSignedIn, user } = useUser();
 
   const [searchFilter, setSearchFilter] = useState({
     title: "",
@@ -17,6 +16,9 @@ export const AppContextProvider = (props) => {
   const [jobs, setJobs] = useState([]);
 
   const [showRecruiterLogin, setShowRecruiterLogin] = useState(false);
+
+  const { isLoaded, isSignedIn, user } = useUser();
+
 
   // function to fetch job data
   const fetchJobs = async () => {
@@ -40,8 +42,8 @@ export const AppContextProvider = (props) => {
   }, []);*/
 
   const value = {
-    isLoaded,
     user,
+    isLoaded,
     searchFilter,
     setSearchFilter,
     isSearched,

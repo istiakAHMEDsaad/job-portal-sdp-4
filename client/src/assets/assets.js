@@ -983,3 +983,19 @@ export const jobsData = [
     category: "Programming",
   },
 ];
+
+export const portFolioData = [
+  {
+    _id: "1",
+    image: profile_img,
+    name: "Dummy User",
+    email: "dummy@gmail.com",
+    address: "dummy area",
+    about:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, expedita atque? Doloremque ipsam rem debitis, assumenda temporibus iusto ea doloribus?",
+    education: "bsc in cse",
+    skill: ["html", "css", "python", "c", "c++"],
+    experience: "internship on keya cosmetics",
+    objective: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+  },
+];
