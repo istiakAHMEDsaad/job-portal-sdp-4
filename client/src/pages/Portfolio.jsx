@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const Portfolio = () => {
   const [userData, setUserData] = useState([]);
-  const { user, isLoaded } = useContext(AppContext);
+  const { isLoaded } = useContext(AppContext);
   const navigate = useNavigate();
 
   const fetchPortfolioData = async () => {
@@ -20,9 +20,10 @@ const Portfolio = () => {
   }, []);
 
   const {
-    _id,
+
     image,
     name,
+    mobile,
     email,
     address,
     about,
@@ -73,6 +74,7 @@ const Portfolio = () => {
                     <div className='text-gray-900 font-semibold'>
                       <p>Name: {name}</p>
                       <p>Email: {email}</p>
+                      <p>Mobile: {mobile}</p>
                       <p>Address: {address}</p>
                     </div>
                   </div>
