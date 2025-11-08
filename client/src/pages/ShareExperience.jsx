@@ -72,9 +72,7 @@ const ShareExperience = () => {
                   {item.jobTitle} @ {item.company}
                 </p>
 
-                <p class='mt-0.5 text-gray-700'>
-                  {item.experience}
-                </p>
+                <p class='mt-0.5 text-gray-700'>{item.experience}</p>
               </div>
             </div>
           ))}
