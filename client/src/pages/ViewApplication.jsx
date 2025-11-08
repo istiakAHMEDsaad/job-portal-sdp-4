@@ -24,7 +24,7 @@ const ViewApplication = () => {
   const toggleMenu = (index) => {
     setOpenMenuIndex(openMenuIndex === index ? null : index);
   };
-  
+
   return (
     <div className='container mx-auto p-4'>
       <div>
@@ -36,7 +36,7 @@ const ViewApplication = () => {
               <th className='py-2 px-4 text-left max-sm:hidden'>Job Title</th>
               <th className='py-2 px-4 text-left max-sm:hidden'>Location</th>
               <th className='py-2 px-4 text-left'>Resume</th>
-              <th className='py-2 px-4 text-left'>Actoin</th>
+              <th className='py-2 px-4 text-left'>Action</th>
             </tr>
           </thead>
 
