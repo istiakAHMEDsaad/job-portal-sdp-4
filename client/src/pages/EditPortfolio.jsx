@@ -40,7 +40,9 @@ const EditPortfolio = () => {
     <div>
       <Navbar />
       <div>
-        <p className="text-2xl text-center py-8 text-gray-800">Update Your Information Here</p>
+        <p className='text-2xl text-center py-8 text-gray-800'>
+          Update Your Information Here
+        </p>
         <form
           onSubmit={handleSubmit}
           className='mx-auto grid max-w-lg grid-cols-1 gap-4 rounded-lg border border-gray-300 p-6 sm:grid-cols-2'
@@ -71,13 +73,31 @@ const EditPortfolio = () => {
             >
               Profile Picture
             </label>
-
-            <input
-              className='mt-1 w-full rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none px-3 py-2'
-              id='image'
-              name='image'
-              type='file'
-            />
+            {!image ? (
+              <>
+                <input
+                  onChange={(e) => setImage(e.target.files[0])}
+                  className='mt-1 w-full rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none px-3 py-2'
+                  id='image'
+                  name='image'
+                  type='file'
+                />
+              </>
+            ) : (
+              <div className='flex gap-5 items-center justify-center'>
+                <img
+                  className='w-20 h-20 object-contain rounded-full'
+                  src={image ? URL.createObjectURL(image) : ""}
+                  alt='image'
+                />
+                {/* <button className="py-1 px-2 bg-neutral-950 text-white">edit</button> */}
+                <input
+                  onChange={(e) => setImage(e.target.files[0])}
+                  className='w-23 pl-1 rounded-md bg-gray-100 py-2 border border-gray-500'
+                  type='file'
+                />
+              </div>
+            )}
           </div>
 
           {/* email */}
