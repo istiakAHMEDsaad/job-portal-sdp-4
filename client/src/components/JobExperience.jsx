@@ -19,7 +19,7 @@ const JobExperience = () => {
 
           <div class='mt-4 flex gap-4 sm:mt-6'>
             <button
-              onClick={() => navigate("/share-experience")}
+              onClick={() => {navigate("/share-experience"); scrollTo(0, 0);}}
               class='inline-block rounded border border-blue-600 bg-blue-600 px-5 py-3 font-medium text-white shadow-sm transition-colors hover:bg-blue-700 cursor-pointer'
             >
               Explore Now
