@@ -12,3 +12,15 @@ email: dovedi8191@burangir.com
 pass: Dovedi@8191
 
 # User 3:
+firstname: Ratan
+lastname: Miya
+username: Ratan
+email: ratanmiya@gmail.com
+pass: RatanMiya@4321
+
+# User 4:
+firstname: Sabbir
+lastname: Rahman
+username: Sabbir
+email: sabbir@gmail.com
+pass: SabbirRahman@4321
