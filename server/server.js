@@ -12,24 +12,27 @@ const app = express();
 // Connect to database
 await connectDB();
 
-// Middlewares
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Routes
+// Basic routes
 app.get("/", (req, res) => {
-  res.send("Api is working");
+  res.send("Bubt Job Portal API is Working!!!");
 });
+
 app.get("/debug-sentry", function mainHandler(req, res) {
   throw new Error("My first Sentry error!");
 });
 
 app.post('/webhooks', clerkWebhooks)
 
-// Port
+// Server start
 const PORT = process.env.PORT || 5000;
+// Sentry error handler
+
 Sentry.setupExpressErrorHandler(app);
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port: ${PORT}`);
+  console.log(`🚀 Server is running on port: ${PORT}`);
 });
