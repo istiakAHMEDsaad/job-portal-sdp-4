@@ -1,15 +1,28 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { assets } from "../assets/assets";
 import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
+import { useContext } from "react";
+import { AppContext } from "../context/AppContext";
 
 const Navbar = () => {
   const { openSignIn } = useClerk();
   const { user } = useUser();
 
+  const navigate = useNavigate();
+
+  const { setShowRecruiterLogin } = useContext(AppContext);
+
+  console.log(user);
+
   return (
     <div className='shadow py-4'>
-      <div className='container px-4 2xl:px-20 mx-auto flex justify-between items-center'>
-        <img src={assets.logo} alt='logo' />
+      <div className='container md:px-4 2xl:px-20 mx-auto flex justify-between items-center'>
+        <img
+          onClick={() => navigate("/")}
+          className='cursor-pointer'
+          src={assets.logo}
+          alt='logo'
+        />
 
         {/* Login Button */}
         {user ? (
@@ -20,7 +33,7 @@ const Navbar = () => {
             >
               Applied Jobs
             </Link>
-            <p className="maax-sm:flex md:hidden"> | </p>
+            <p className='maax-sm:flex md:hidden'> | </p>
             <div className='md:flex max-sm:hidden items-center gap-2'>
               <p> | </p>
               <p className='flex items-center gap-1'>
@@ -36,10 +49,15 @@ const Navbar = () => {
           </div>
         ) : (
           <div className='flex gap-4 max-sm:text-xs'>
-            <button className='text-gray-600'>Recruiter Login</button>
+            <button
+              onClick={() => setShowRecruiterLogin(true)}
+              className='text-gray-600 hover:underline transition-transform cursor-pointer'
+            >
+              Recruiter Login
+            </button>
             <button
               onClick={() => openSignIn()}
-              className='bg-blue-600 text-white px-6 sm:px-9 py-2 rounded-full'
+              className='bg-blue-600 hover:bg-blue-600/95 transition-colors text-white px-6 sm:px-9 py-2 rounded-full cursor-pointer'
             >
               Login
             </button>

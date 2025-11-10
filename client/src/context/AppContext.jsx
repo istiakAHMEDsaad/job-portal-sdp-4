@@ -1,9 +1,11 @@
 import { createContext, useEffect, useState } from "react";
 import { jobsData } from "../assets/assets";
+import { useUser } from "@clerk/clerk-react";
 
 export const AppContext = createContext();
 
 export const AppContextProvider = (props) => {
+
   const [searchFilter, setSearchFilter] = useState({
     title: "",
     location: "",
@@ -12,6 +14,11 @@ export const AppContextProvider = (props) => {
   const [isSearched, setIsSearched] = useState(false);
 
   const [jobs, setJobs] = useState([]);
+
+  const [showRecruiterLogin, setShowRecruiterLogin] = useState(false);
+
+  const { isLoaded, isSignedIn, user } = useUser();
+
 
   // function to fetch job data
   const fetchJobs = async () => {
@@ -35,12 +42,16 @@ export const AppContextProvider = (props) => {
   }, []);*/
 
   const value = {
+    user,
+    isLoaded,
     searchFilter,
     setSearchFilter,
     isSearched,
     setIsSearched,
     jobs,
     setJobs,
+    showRecruiterLogin,
+    setShowRecruiterLogin,
   };
 
   return (

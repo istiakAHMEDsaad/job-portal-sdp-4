@@ -10,3 +10,5 @@ Tech use:
 4. [React Toastify](https://www.npmjs.com/package/react-toastify) `npm i react-toastify@11.0.5`
 5. [Quill](https://www.npmjs.com/package/quill) `npm i quill@2.0.3`
 6. [Clerk](https://dashboard.clerk.com/apps)
+7. [k-convert](https://www.npmjs.com/package/k-convert) `npm i k-convert`
+8. [moment](https://www.npmjs.com/package/moment)`npm i moment`
