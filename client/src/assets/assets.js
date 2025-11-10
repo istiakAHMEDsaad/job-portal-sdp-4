@@ -1000,3 +1000,70 @@ export const portFolioData = [
     objective: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
   },
 ];
+
+export const experiences = [
+  {
+    id: 1,
+    name: "Ava Thompson",
+    jobTitle: "Frontend Developer",
+    company: "TechNova",
+    experience:
+      "Working at TechNova improved my React and Tailwind CSS skills drastically. Amazing team culture!",
+  },
+  {
+    id: 2,
+    name: "Liam Parker",
+    jobTitle: "Backend Engineer",
+    company: "CloudWorks",
+    experience:
+      "Learned so much about Node.js and microservices. Great mentors and work-life balance.",
+  },
+  {
+    id: 3,
+    name: "Sophia Lee",
+    jobTitle: "UI/UX Designer",
+    company: "DesignHub",
+    experience:
+      "Collaborating with devs to bring ideas to life was fun. Learned Figma to React handoff process.",
+  },
+  {
+    id: 4,
+    name: "Ethan Patel",
+    jobTitle: "Data Analyst",
+    company: "InsightIQ",
+    experience:
+      "Dived deep into SQL and visualization tools. Enhanced problem-solving skills daily.",
+  },
+  {
+    id: 5,
+    name: "Mia Johnson",
+    jobTitle: "Mobile Developer",
+    company: "AppSphere",
+    experience:
+      "Building cross-platform apps using React Native was challenging but rewarding.",
+  },
+  {
+    id: 6,
+    name: "Noah Davis",
+    jobTitle: "DevOps Engineer",
+    company: "Cloudify",
+    experience:
+      "Automated deployment pipelines using Docker and CI/CD. Great hands-on experience.",
+  },
+  {
+    id: 7,
+    name: "Emma Brown",
+    jobTitle: "QA Tester",
+    company: "SoftSure",
+    experience:
+      "Testing real-world products improved my debugging and documentation skills.",
+  },
+  {
+    id: 8,
+    name: "Lucas Wright",
+    jobTitle: "Full Stack Developer",
+    company: "WebCore",
+    experience:
+      "Balancing front-end and back-end tasks gave me a full project perspective.",
+  },
+];

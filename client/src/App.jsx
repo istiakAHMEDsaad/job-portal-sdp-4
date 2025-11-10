@@ -12,6 +12,7 @@ import ViewApplication from "./pages/ViewApplication";
 import "quill/dist/quill.snow.css";
 import Portfolio from "./pages/Portfolio";
 import EditPortfolio from "./pages/EditPortfolio";
+import ShareExperience from "./pages/ShareExperience";
 
 function App() {
   const { showRecruiterLogin } = useContext(AppContext);
@@ -30,6 +31,7 @@ function App() {
           <Route path='manage-job' element={<ManageJobs />} />
           <Route path='view-applications' element={<ViewApplication />} />
         </Route>
+        <Route path='/share-experience' element={<ShareExperience />} />
       </Routes>
     </div>
   );
