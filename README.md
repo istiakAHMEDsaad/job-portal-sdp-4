@@ -42,7 +42,7 @@ git checkout main
 git pull origin main
 ```
 
-- Optional :warning: ( Your local changes to the following files would be overwritten by merge) problem:
+- Optional :warning: ( Your local changes to the following files would be overwritten by merge `git fetch origin`) problem:
 
   - __Solve 1:__
   ```
