@@ -12,6 +12,8 @@ const Navbar = () => {
 
   const { setShowRecruiterLogin } = useContext(AppContext);
 
+  console.log(user);
+
   return (
     <div className='shadow py-4'>
       <div className='container md:px-4 2xl:px-20 mx-auto flex justify-between items-center'>
