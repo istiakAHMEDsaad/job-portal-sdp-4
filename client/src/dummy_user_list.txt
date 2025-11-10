@@ -1,8 +1,14 @@
 # User 1:
-Username:
-Pevosi
-Email:
-pevosi3166@hh7f.com
-Pass:
-Pevosi3166@hh7f
+firstname: Pevosi
+lastname: Hullaki
+username: Pevosi
+Email: pevosi3166@hh7f.com
+Pass: Pevosi3166@hh7f
 
+# User 2:
+firstname: Dovedi
+lastname: Burangir
+email: dovedi8191@burangir.com
+pass: Dovedi@8191
+
+# User 3:

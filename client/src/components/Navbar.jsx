@@ -12,7 +12,7 @@ const Navbar = () => {
 
   const { setShowRecruiterLogin } = useContext(AppContext);
 
-  console.log(user);
+  // console.log(user);
 
   return (
     <div className='shadow py-4'>
