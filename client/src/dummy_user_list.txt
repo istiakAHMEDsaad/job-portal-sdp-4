@@ -1,26 +1,6 @@
-# User 1:
-firstname: Pevosi
-lastname: Hullaki
-username: Pevosi
-Email: pevosi3166@hh7f.com
-Pass: Pevosi3166@hh7f
-
-# User 2:
-firstname: Dovedi
-lastname: Burangir
-email: dovedi8191@burangir.com
-pass: Dovedi@8191
-
-# User 3:
-firstname: Ratan
-lastname: Miya
-username: Ratan
-email: ratanmiya@gmail.com
-pass: RatanMiya@4321
-
-# User 4:
-firstname: Sabbir
-lastname: Rahman
-username: Sabbir
-email: sabbir@gmail.com
-pass: SabbirRahman@4321
+# User 1
+firstname: Vodedi
+lastname: Etramay
+username: Vodedi
+email: vodedi9769@etramay.com
+pass: Vodedi@9769
