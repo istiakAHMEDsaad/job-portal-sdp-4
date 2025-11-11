@@ -29,7 +29,9 @@ export const clerkWebhooks = async (req, res) => {
         };
 
         await User.create(userData);
-        res.status(200).json({ success: true });
+        res
+          .status(201)
+          .json({ success: true, message: "Account Created Successfully" });
         break;
       }
 
