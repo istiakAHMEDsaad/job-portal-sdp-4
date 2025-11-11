@@ -19,3 +19,8 @@ npm install express jsonwebtoken bcrypt mongoose nodemon svix@1.42.0 cors multer
 ### Use [Sentry](https://sentry.io/welcome/) for app performance
 - [Sentry Express Doc.](https://docs.sentry.io/platforms/javascript/guides/express/)
 - [Sentry mongoDB Doc.](https://docs.sentry.io/platforms/javascript/guides/express/configuration/integrations/mongo/)
+
+### Generate Hash
+```
+require('crypto').randomBytes(64).toString('hex')
+```
