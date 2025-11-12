@@ -1,6 +1,7 @@
 import Company from "../models/Company.js";
 import bcrypt from "bcrypt";
 import { v2 as cloudinary } from "cloudinary";
+import generateToken from "../utils/generateToken.js";
 
 // Register a new company
 export const registerCompany = async (req, res) => {
@@ -42,13 +43,43 @@ export const registerCompany = async (req, res) => {
         email: company.email,
         image: company.image,
       },
-      
+      token: generateToken(company._id),
     });
-  } catch (error) {}
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: error.message,
+    });
+  }
 };
 
 // Company Login
-export const loginCompany = async (req, res) => {};
+export const loginCompany = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const company = await Company.findOne({ email });
+    if (bcrypt.compare(password, company.password)) {
+      res.status(200).json({
+        success: true,
+        company: {
+          _id: company._id,
+          name: company.name,
+          email: company.email,
+          image: company.image,
+        },
+        token: generateToken(company._id),
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        message: "Invalid email or password",
+      });
+    }
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
 
 // Get company data
 export const getCompanyData = async (req, res) => {};
