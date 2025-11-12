@@ -14,7 +14,7 @@ import upload from "../controllers/multer.js";
 const router = express.Router();
 
 // Register a company
-router.post("/register", upload.single('image'), registerCompany);
+router.post("/register", upload.single("image"), registerCompany);
 
 // Company login
 router.post("/login", loginCompany);
