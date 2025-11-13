@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import ApplyJob from "./pages/ApplyJob";
 import Applications from "./pages/Applications";
@@ -13,6 +13,7 @@ import "quill/dist/quill.snow.css";
 import Portfolio from "./pages/Portfolio";
 import EditPortfolio from "./pages/EditPortfolio";
 import ShareExperience from "./pages/ShareExperience";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
   const { showRecruiterLogin } = useContext(AppContext);
@@ -32,6 +33,8 @@ function App() {
           <Route path='view-applications' element={<ViewApplication />} />
         </Route>
         <Route path='/share-experience' element={<ShareExperience />} />
+
+        <Route path='*' element={<Navigate to='/' />} />
       </Routes>
     </div>
   );
