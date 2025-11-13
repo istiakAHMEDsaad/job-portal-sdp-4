@@ -21,7 +21,7 @@ router.post("/register", upload.single("image"), registerCompany);
 router.post("/login", loginCompany);
 
 // Get company data
-router.get("/company", protectCompany, getCompanyData);
+router.get("/comp any", protectCompany, getCompanyData);
 
 // Post a job
 router.post("/post-job", protectCompany, postJob);
