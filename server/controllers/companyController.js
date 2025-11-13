@@ -60,7 +60,7 @@ export const loginCompany = async (req, res) => {
 
   try {
     const company = await Company.findOne({ email });
-    
+
     if (bcrypt.compare(password, company.password)) {
       res.status(200).json({
         success: true,
@@ -110,7 +110,14 @@ export const postJob = async (req, res) => {
 };
 
 // Get company data
-export const getCompanyData = async (req, res) => {};
+export const getCompanyData = async (req, res) => {
+  try {
+    const company = req.company;
+    res.status(200).json({ message: true, company });
+  } catch (error) {
+    res.status(404).json({ success: false, message: error.message });
+  }
+};
 
 // Get company job applicants
 export const getCompanyJobApplicants = async (req, res) => {};
