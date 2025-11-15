@@ -39,6 +39,7 @@ export const AppContextProvider = (props) => {
       });
       if (data.success) {
         setCompanyData(data.company);
+        console.log(data.company);
       } else {
         toast.error(data.message);
       }
