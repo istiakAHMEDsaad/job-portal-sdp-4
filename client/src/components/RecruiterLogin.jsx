@@ -40,17 +40,7 @@ const RecruiterLogin = () => {
           localStorage.setItem('companyToken', data?.token);
           setShowRecruiterLogin(false);
           navigate('/dashboard');
-          toast.success('Welcome to BUBT Job Portal', {
-            position: 'top-right',
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: 'colored',
-            transition: Slide,
-          });
+          toast.success('Welcome to BUBT Job Portal');
         } else {
           // toast.error(data?.message);
         }
@@ -77,17 +67,7 @@ const RecruiterLogin = () => {
         }
       }
     } catch (error) {
-      toast.error('Invalid email or password!', {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'colored',
-        transition: Slide,
-      });
+      toast.error('Invalid email or password!');
     }
   };
 
