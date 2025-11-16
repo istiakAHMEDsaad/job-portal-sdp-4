@@ -42,7 +42,7 @@ function App() {
         <Route path='/applications' element={<Applications />} />
         <Route path='/portfolio' element={<Portfolio />} />
         <Route path='/portfolio/edit-portfolio' element={<EditPortfolio />} />
-        <Route path='/dashboard' element={<Dashboard />}>
+        {/* <Route path='/dashboard' element={<Dashboard />}>
           {companyToken ? (
             <>
               <Route path='add-job' element={<AddJob />} />
@@ -50,7 +50,14 @@ function App() {
               <Route path='view-applications' element={<ViewApplication />} />
             </>
           ) : null}
-        </Route>
+        </Route> */}
+        {companyToken ? (
+          <Route path='/dashboard' element={<Dashboard />}>
+            <Route path='add-job' element={<AddJob />} />
+            <Route path='manage-job' element={<ManageJobs />} />
+            <Route path='view-applications' element={<ViewApplication />} />
+          </Route>
+        ) : null}
         <Route path='/share-experience' element={<ShareExperience />} />
 
         {/* <Route path='*' element={<Navigate to='/' />} /> */}
