@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 const ManageJobs = () => {
   const navigate = useNavigate();
 
-  const [jobs, setJobs] = useState(false);
+  const [jobs, setJobs] = useState([]);
 
   const { backendUrl, companyToken } = useContext(AppContext);
 
@@ -30,13 +30,33 @@ const ManageJobs = () => {
     }
   };
 
-  console.log(jobs);
+  // Function to change job visibility
+  const changeJobVisibility = async (id) => {
+    try {
+      const { data } = await axios.post(
+        `${backendUrl}/api/company/change-visibility`,
+        { id },
+        { headers: { token: companyToken } }
+      );
+
+      if (data.success) {
+        toast.success(data.message);
+        fetchCompanyJobs();
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   useEffect(() => {
     if (companyToken) {
       fetchCompanyJobs();
     }
   }, [companyToken]);
+
+  console.log(jobs);
 
   return (
     <div className='container p-4 max-w-5xl'>
@@ -66,7 +86,7 @@ const ManageJobs = () => {
           </thead>
 
           <tbody>
-            {manageJobsData.map((job, index) => (
+            {jobs.map((job, index) => (
               <tr key={index} className='text-gray-700'>
                 <td className='py-2 px-4 border-b border-gray-200 max-sm:hidden'>
                   {index + 1}
@@ -84,7 +104,12 @@ const ManageJobs = () => {
                   {job.applicants}
                 </td>
                 <td className='py-2 px-4 border-b border-gray-200'>
-                  <input className='scale-125 ml-4' type='checkbox' />
+                  <input
+                    onChange={() => changeJobVisibility(job._id)}
+                    className='scale-125 ml-4'
+                    type='checkbox'
+                    checked={job.visible}
+                  />
                 </td>
               </tr>
             ))}
