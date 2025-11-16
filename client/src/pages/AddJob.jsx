@@ -1,28 +1,59 @@
-import { useEffect, useRef, useState } from "react";
-import Quill from "quill";
-import { JobCategories, JobLocations } from "../assets/assets";
+import { useContext, useEffect, useRef, useState } from 'react';
+import Quill from 'quill';
+import { JobCategories, JobLocations } from '../assets/assets';
+import axios from 'axios';
+import { AppContext } from '../context/AppContext';
+import { toast } from 'react-toastify';
 
 const AddJob = () => {
-  const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("Programming");
-  const [location, setLocation] = useState("Gulshan");
-  const [level, setLevel] = useState("Beginner Level");
+  const [title, setTitle] = useState('');
+  const [category, setCategory] = useState('Programming');
+  const [location, setLocation] = useState('Gulshan');
+  const [level, setLevel] = useState('Beginner Level');
   const [salary, setSalary] = useState(0);
 
   const editorRef = useRef(null);
   const quillRef = useRef(null);
 
+  const { backendUrl, companyToken } = useContext(AppContext);
+
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+
+    try {
+      const description = quillRef.current.root.innerHTML;
+
+      const { data } = await axios.post(
+        `${backendUrl}/api/company/post-job`,
+        { title, description, location, salary, category, level },
+        { headers: { token: companyToken } }
+      );
+
+      if (data.success) {
+        setTitle('');
+        setSalary(0);
+        quillRef.current.root.innerHTML = '';
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+    toast.success('Data added');
+  };
+
   useEffect(() => {
     // intiate quill
     if (!quillRef.current && editorRef.current) {
       quillRef.current = new Quill(editorRef.current, {
-        theme: "snow",
+        theme: 'snow',
       });
     }
   }, []);
 
   return (
-    <form className='container p-4 flex flex-col w-full items-start gap-3'>
+    <form
+      onSubmit={onSubmitHandler}
+      className='container p-4 flex flex-col w-full items-start gap-3'
+    >
       {/* Job Title */}
       <div className='w-full'>
         <p className='mb-2'>Job Title</p>
@@ -100,9 +131,14 @@ const AddJob = () => {
         />
       </div>
 
-      <button className='w-28 py-3 max-sm:w-20 mt-4 bg-neutral-950 text-white rounded cursor-pointer hover:bg-neutral-900 transition-colors'>
+      {/* <button className='w-28 py-3 max-sm:w-20 mt-4 bg-neutral-950 text-white rounded cursor-pointer hover:bg-neutral-900 transition-colors'>
         ADD
-      </button>
+      </button> */}
+      <input
+        className='w-28 py-3 max-sm:w-20 mt-4 bg-neutral-950 text-white rounded cursor-pointer hover:bg-neutral-900 transition-colors'
+        type='submit'
+        value='ADD'
+      />
     </form>
   );
 };

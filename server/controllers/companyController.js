@@ -1,8 +1,9 @@
-import Company from "../models/Company.js";
-import bcrypt from "bcrypt";
-import { v2 as cloudinary } from "cloudinary";
-import generateToken from "../utils/generateToken.js";
-import Job from "../models/Job.js";
+import Company from '../models/Company.js';
+import bcrypt from 'bcrypt';
+import { v2 as cloudinary } from 'cloudinary';
+import generateToken from '../utils/generateToken.js';
+import Job from '../models/Job.js';
+import JobApplication from '../models/JobApplication.js';
 
 // Register a new company
 export const registerCompany = async (req, res) => {
@@ -11,7 +12,7 @@ export const registerCompany = async (req, res) => {
   const imageFile = req.file;
 
   if (!name || !email || !password || !imageFile) {
-    return res.status(404).json({ success: false, message: "Missing details" });
+    return res.status(404).json({ success: false, message: 'Missing details' });
   }
 
   try {
@@ -20,7 +21,7 @@ export const registerCompany = async (req, res) => {
     if (companyExist) {
       return res
         .status(403)
-        .json({ success: false, message: "Company already registered" });
+        .json({ success: false, message: 'Company already registered' });
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -61,7 +62,7 @@ export const loginCompany = async (req, res) => {
   try {
     const company = await Company.findOne({ email });
 
-    if (bcrypt.compare(password, company.password)) {
+    if (await bcrypt.compare(password, company.password)) {
       res.status(200).json({
         success: true,
         company: {
@@ -75,7 +76,7 @@ export const loginCompany = async (req, res) => {
     } else {
       res.status(404).json({
         success: false,
-        message: "Invalid email or password",
+        message: 'Invalid email or password',
       });
     }
   } catch (error) {
@@ -113,7 +114,7 @@ export const postJob = async (req, res) => {
 export const getCompanyData = async (req, res) => {
   try {
     const company = req.company;
-    res.status(200).json({ message: true, company });
+    res.status(200).json({ success: true, company });
   } catch (error) {
     res.status(404).json({ success: false, message: error.message });
   }
@@ -130,7 +131,15 @@ export const getCompanyPostedJobs = async (req, res) => {
     const jobs = await Job.find({ companyId });
 
     // TODO1: Adding No. of applicants info in database
-    res.status(200).json({ success: true, jobsData: jobs });
+    const jobsData = await Promise.all(
+      jobs.map(async (job) => {
+        const applicants = await JobApplication.find({ jobId: job._id });
+
+        return { ...job.toObject(), applicants: applicants.length };
+      })
+    );
+
+    res.status(200).json({ success: true, jobsData });
   } catch (error) {
     res.status().json({ success: false, message: error.message });
   }

@@ -1,9 +1,42 @@
-import moment from "moment";
-import { manageJobsData } from "../assets/assets";
-import { useNavigate } from "react-router-dom";
+import moment from 'moment';
+import { manageJobsData } from '../assets/assets';
+import { useNavigate } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { AppContext } from '../context/AppContext';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const ManageJobs = () => {
   const navigate = useNavigate();
+
+  const [jobs, setJobs] = useState(false);
+
+  const { backendUrl, companyToken } = useContext(AppContext);
+
+  // Functions to fetch company Job Applications data
+  const fetchCompanyJobs = async () => {
+    try {
+      const { data } = await axios.get(`${backendUrl}/api/company/list-jobs`, {
+        headers: { token: companyToken },
+      });
+
+      if (data.success) {
+        setJobs(data.jobsData.reverse());
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  console.log(jobs);
+
+  useEffect(() => {
+    if (companyToken) {
+      fetchCompanyJobs();
+    }
+  }, [companyToken]);
 
   return (
     <div className='container p-4 max-w-5xl'>
@@ -42,7 +75,7 @@ const ManageJobs = () => {
                   {job.title}
                 </td>
                 <td className='py-2 px-4 border-b border-gray-200 max-sm:hidden'>
-                  {moment(job.date).format("ll")}
+                  {moment(job.date).format('ll')}
                 </td>
                 <td className='py-2 px-4 border-b border-gray-200 max-sm:hidden'>
                   {job.location}
@@ -62,7 +95,7 @@ const ManageJobs = () => {
       {/* button */}
       <div className='mt-4 flex justify-end'>
         <button
-          onClick={() => navigate("/dashboard/add-job")}
+          onClick={() => navigate('/dashboard/add-job')}
           className='bg-neutral-950 text-white py-2 px-4 rounded hover:bg-neutral-900 transition-colors cursor-pointer'
         >
           Add new job
