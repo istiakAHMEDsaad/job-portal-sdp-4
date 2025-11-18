@@ -51,6 +51,25 @@ const ViewApplication = () => {
     }
   };
 
+  // Function to Update Job Applications Status
+  const changeJobApplicationsStatus = async (id, status) => {
+    try {
+      const { data } = await axios.post(
+        `${backendUrl}/api/company/change-status`,
+        { id, status },
+        { headers: { token: companyToken } }
+      );
+
+      if (data.success) {
+        fetchCompanyJobApplications();
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
   useEffect(() => {
     if (companyToken) {
       fetchCompanyJobApplications();
@@ -59,8 +78,8 @@ const ViewApplication = () => {
 
   return applicants ? (
     applicants.length === 0 ? (
-      <div>
-        <p>No data found</p>
+      <div className='flex items-center justify-center h-[70vh]'>
+        <p className='text-xl sm:text-2xl'>No Applications Available</p>
       </div>
     ) : (
       <div className='container mx-auto p-4'>
@@ -119,25 +138,45 @@ const ViewApplication = () => {
                       className='py-2 px-4 border-b border-gray-200 relative'
                       ref={(el) => (menuRefs.current[index] = el)}
                     >
-                      <div className='relative inline-block text-left'>
-                        <button
-                          onClick={() => toggleMenu(index)}
-                          className='text-gray-500 action-button'
-                        >
-                          ...
-                        </button>
+                      {applicant.status === 'Pending' ? (
+                        <div className='relative inline-block text-left'>
+                          <button
+                            onClick={() => toggleMenu(index)}
+                            className='text-gray-500 action-button'
+                          >
+                            ...
+                          </button>
 
-                        {openMenuIndex === index && (
-                          <div className='z-10 absolute right-0 md:left-0 top-0 mt-2 w-32 bg-white border border-gray-200 rounded shadow'>
-                            <button className='block w-full text-left px-4 py-2 text-blue-500 hover:bg-gray-100 cursor-pointer'>
-                              Accept
-                            </button>
-                            <button className='block w-full text-left px-4 py-2 text-red-500 hover:bg-red-100 cursor-pointer'>
-                              Reject
-                            </button>
-                          </div>
-                        )}
-                      </div>
+                          {openMenuIndex === index && (
+                            <div className='z-10 absolute right-0 md:left-0 top-0 mt-2 w-32 bg-white border border-gray-200 rounded shadow'>
+                              <button
+                                onClick={() =>
+                                  changeJobApplicationsStatus(
+                                    applicant._id,
+                                    'Accepted'
+                                  )
+                                }
+                                className='block w-full text-left px-4 py-2 text-blue-500 hover:bg-gray-100 cursor-pointer'
+                              >
+                                Accept
+                              </button>
+                              <button
+                                onClick={() =>
+                                  changeJobApplicationsStatus(
+                                    applicant._id,
+                                    'Rejected'
+                                  )
+                                }
+                                className='block w-full text-left px-4 py-2 text-red-500 hover:bg-red-100 cursor-pointer'
+                              >
+                                Reject
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                      ) : (
+                        <div>{applicant.status}</div>
+                      )}
                     </td>
                   </tr>
                 ))}

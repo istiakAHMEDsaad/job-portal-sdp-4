@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import Navbar from '../components/Navbar';
-import { assets, jobsApplied } from '../assets/assets';
+import { assets } from '../assets/assets';
 import moment from 'moment';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +8,7 @@ import { AppContext } from '../context/AppContext';
 import { useAuth, useUser } from '@clerk/clerk-react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useEffect } from 'react';
 
 const Applications = () => {
   const navigate = useNavigate();
@@ -18,8 +19,13 @@ const Applications = () => {
   const [isEdit, setIsEdit] = useState(false);
   const [resume, setResume] = useState(null);
 
-  const { backendUrl, userData, userApplications, fetchUserData } =
-    useContext(AppContext);
+  const {
+    backendUrl,
+    userData,
+    userApplications,
+    fetchUserData,
+    fetchUserApplications,
+  } = useContext(AppContext);
 
   const updateResume = async () => {
     try {
@@ -47,6 +53,12 @@ const Applications = () => {
     setIsEdit(false);
     setResume(null);
   };
+
+  useEffect(() => {
+    if(user){
+      fetchUserApplications();
+    }
+  }, [user]);
 
   return (
     <>
@@ -83,7 +95,7 @@ const Applications = () => {
             <div className='flex gap-2'>
               <a
                 className='bg-blue-100 text-blue-600 md:px-4 md:py-2 md:rounded-lg py-2 px-4 rounded-md'
-                href='#'
+                href={userData.resume} target='_blank'
               >
                 Resume
               </a>
