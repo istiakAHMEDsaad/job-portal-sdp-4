@@ -42,7 +42,7 @@ git checkout main
 git pull origin main
 ```
 
-- Optional :warning: ( Your local changes to the following files would be overwritten by merge) problem:
+- Optional :warning: ( Your local changes to the following files would be overwritten by merge `git fetch origin`) problem:
 
   - __Solve 1:__
   ```
@@ -65,4 +65,27 @@ git pull origin main
 
   # Bring the saved work back:
   git stash pop
+  ```
+  
+  - __Solve 3:__
+  ```
+  git fetch origin
+
+  # Option 1 (safe merge)
+  git merge origin/server-test
+
+  # quite vim ':qw' and make a commit
+  git merge origin/branch-name
+
+  # Option 2 (cleaner, rewrite history):
+  git rebase origin/server-test
+
+  # If you get conflicts, resolve them, then run:
+  git add .
+  git rebase --continue
+
+  #Once the merge or rebase is done:
+  git push origin branch-name
+
+  # add -> commit -> fetch -> merge -> again add commit push
   ```
