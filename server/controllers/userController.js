@@ -2,6 +2,7 @@ import Job from '../models/Job.js';
 import JobApplication from '../models/JobApplication.js';
 import User from '../models/User.js';
 import { v2 as cloudinary } from 'cloudinary';
+import Portfolio from '../models/PortFolio.js';
 
 // Get user data
 export const getUserData = async (req, res) => {
@@ -104,10 +105,103 @@ export const updateUserResume = async (req, res) => {
 };
 
 // Get user info
-export const userInfo = async (req, res) => {};
+export const userInfo = async (req, res) => {
+  try {
+    const userId = req.auth.userId;
+
+    if (!userId) {
+      return res.status(401).json({ success: false, message: 'Unauthorized' });
+    }
+
+    const portfolio = await Portfolio.findOne({ userId });
+
+    if (!portfolio) {
+      res.status(404).json({ success: false, message: 'No portfolio found' });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: 'Portfolio fetched successfully',
+      portfolio,
+    });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
 
 // Post user info
-export const postUserInfo = async (req, res) => {};
+export const postUserInfo = async (req, res) => {
+  try {
+    const userId = req.auth.userId;
+
+    if (!userId) {
+      return res
+        .status(401)
+        .json({ success: false, message: 'Unauthorized access' });
+    }
+
+    const {
+      name,
+      email,
+      image,
+      phone,
+      address,
+      education,
+      skill,
+      experience,
+      objective,
+      about,
+    } = req.body;
+
+    const portfolioId = await Portfolio.findOne({ userId });
+
+    if (portfolioId) {
+      const update = await Portfolio.findOneAndUpdate(
+        { userId },
+        {
+          name,
+          email,
+          image,
+          phone,
+          address,
+          education,
+          skill,
+          experience,
+          objective,
+          about,
+        },
+        { new: true }
+      );
+
+      return res.status(200).json({
+        success: true,
+        message: 'Portfolio updated successfully',
+        portfolio: update,
+      });
+    }
+
+    const newPortfolio = await Portfolio.create({
+      userId,
+      name,
+      email,
+      image,
+      phone,
+      address,
+      education,
+      skill,
+      experience,
+      about,
+    });
+
+    res.status(201).json({
+      success: true,
+      message: 'Portfolio created successfully',
+      portfolio: newPortfolio,
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
 
 // Get job experience
 export const getJobExperience = async (req, res) => {};
