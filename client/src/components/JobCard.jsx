@@ -1,15 +1,15 @@
-import { assets } from "../assets/assets";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const JobCard = ({ job }) => {
-  const { title, location, level, description, _id } = job || {};
+  const { companyId, title, location, level, description, _id } = job || {};
+  const { image } = companyId || {};
 
   const navigate = useNavigate();
 
   return (
     <div className='border border-gray-200 p-6 shadow rounded'>
       <div className='flex justify-between items-center'>
-        <img className='h-8' src={assets.company_icon} alt='company logo' />
+        <img className='h-8' src={image} alt='company logo' />
       </div>
 
       <h4 className='font-medium text-xl mt-2'>{title}</h4>
