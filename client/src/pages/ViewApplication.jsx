@@ -5,6 +5,7 @@ import { AppContext } from '../context/AppContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import Loading from '../components/Loading';
+import { Link } from 'react-router-dom';
 
 const ViewApplication = () => {
   const [openMenuIndex, setOpenMenuIndex] = useState(null);
@@ -111,7 +112,12 @@ const ViewApplication = () => {
                         src={applicant.userId.image}
                         alt='image'
                       />
-                      <span>{applicant.userId.name}</span>
+                      <Link
+                        to={`/view-applications/${applicant.userId?._id}`}
+                        className='text-blue-500 hover:text-blue-600 hover:underline cursor-pointer'
+                      >
+                        {applicant.userId.name}
+                      </Link>
                     </td>
 
                     <td className='py-2 px-4 border-b border-gray-200 max-sm:hidden'>

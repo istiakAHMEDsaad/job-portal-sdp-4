@@ -16,6 +16,7 @@ import ShareExperience from './pages/ShareExperience';
 import ErrorPage from './pages/ErrorPage';
 import { ToastContainer, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ShowUserProfile from './pages/ShowUserProfile';
 
 function App() {
   const { showRecruiterLogin, companyToken } = useContext(AppContext);
@@ -59,7 +60,7 @@ function App() {
           </Route>
         ) : null}
         <Route path='/share-experience' element={<ShareExperience />} />
-
+        <Route path='/view-applications/:id' element={<ShowUserProfile />} />
         {/* <Route path='*' element={<Navigate to='/' />} /> */}
       </Routes>
     </div>

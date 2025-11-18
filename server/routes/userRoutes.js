@@ -2,6 +2,7 @@ import express from "express";
 import {
   applyForJob,
   getJobExperience,
+  getPortfolioByUserId,
   getUserData,
   getUserJobApplications,
   postUserExperience,
@@ -27,6 +28,9 @@ router.post("/update-resume", upload.single("resume"), updateUserResume);
 
 // Get user info
 router.get("/user-info", userInfo);
+
+// Get user info by id
+router.get("/user-info/:userId", getPortfolioByUserId)
 
 // Post user info data
 router.post("/post-user-info", postUserInfo);

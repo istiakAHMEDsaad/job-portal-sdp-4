@@ -129,6 +129,29 @@ export const userInfo = async (req, res) => {
   }
 };
 
+// Get user info by id
+export const getPortfolioByUserId = async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    const portfolio = await Portfolio.findOne({ userId });
+
+    if (!portfolio) {
+      return res.status(404).json({
+        success: false,
+        message: 'User info not found',
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      portfolio,
+    });
+  } catch (error) {
+    return res.status(400).json({ success: false, message: error.message });
+  }
+};
+
 // Post user info
 export const postUserInfo = async (req, res) => {
   try {
