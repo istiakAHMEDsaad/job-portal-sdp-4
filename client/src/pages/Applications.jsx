@@ -1,15 +1,52 @@
-import { useState } from "react";
-import Navbar from "../components/Navbar";
-import { assets, jobsApplied } from "../assets/assets";
-import moment from "moment";
-import Footer from "../components/Footer";
-import { useNavigate } from "react-router-dom";
+import { useContext, useState } from 'react';
+import Navbar from '../components/Navbar';
+import { assets, jobsApplied } from '../assets/assets';
+import moment from 'moment';
+import Footer from '../components/Footer';
+import { useNavigate } from 'react-router-dom';
+import { AppContext } from '../context/AppContext';
+import { useAuth, useUser } from '@clerk/clerk-react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Applications = () => {
+  const navigate = useNavigate();
+
+  const { user } = useUser();
+  const { getToken } = useAuth();
+
   const [isEdit, setIsEdit] = useState(false);
   const [resume, setResume] = useState(null);
 
-  const navigate = useNavigate();
+  const { backendUrl, userData, userApplications, fetchUserData } =
+    useContext(AppContext);
+
+  const updateResume = async () => {
+    try {
+      const formData = new FormData();
+      formData.append('resume', resume);
+
+      const token = await getToken();
+
+      const { data } = await axios.post(
+        `${backendUrl}/api/users/update-resume`,
+        formData,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      if (data.success) {
+        toast.success(data.message);
+        await fetchUserData();
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+
+    setIsEdit(false);
+    setResume(null);
+  };
 
   return (
     <>
@@ -20,11 +57,11 @@ const Applications = () => {
 
         {/* Resume + Biodata */}
         <div className='flex gap-2 mb-6 mt-3'>
-          {isEdit ? (
+          {isEdit || (userData && userData?.resume) === '' ? (
             <>
               <label className='flex items-center' htmlFor='resumeUpload'>
                 <p className='bg-blue-100 text-blue-600 md:px-4 md:py-2 md:rounded-lg py-2 px-4 rounded-md mr-2'>
-                  Select Resume
+                  {resume ? resume.name : 'Select Resume'}
                 </p>
                 <input
                   id='resumeUpload'
@@ -36,8 +73,8 @@ const Applications = () => {
                 <img src={assets.profile_upload_icon} alt='upload icon' />
               </label>
               <button
-                onClick={() => setIsEdit(false)}
-                className='bg-green-100 border border-green-400 md:px-4 md:py-2 md:rounded-lg py-2 px-4 rounded-md'
+                onClick={updateResume}
+                className='bg-green-100 hover:bg-green-200 transition-colors cursor-pointer border border-green-400 md:px-4 md:py-2 md:rounded-lg py-2 px-4 rounded-md'
               >
                 Save
               </button>
@@ -59,7 +96,7 @@ const Applications = () => {
               </button>
 
               <button
-                onClick={() => navigate("/portfolio")}
+                onClick={() => navigate('/portfolio')}
                 className='px-4 py-2 rounded-md md:px-4 md:py-2 md:rounded-lg bg-neutral-950 text-gray-100 cursor-pointer'
               >
                 Portfolio
@@ -91,30 +128,34 @@ const Applications = () => {
           </thead>
           <tbody>
             {/* job.jobId */}
-            {jobsApplied.map((job, index) =>
+            {userApplications?.map((job, index) =>
               job.jobId ? (
                 <tr key={index}>
                   <td className='py-3 px-4 flex items-center gap-2 border-b border-gray-200'>
-                    <img className='w-8 h-8' src={job.logo} alt={job.title} />
-                    {job.company}
+                    <img
+                      className='w-8 h-8'
+                      src={job.companyId.image}
+                      alt={job.jobId.title}
+                    />
+                    {job.companyId.name}
                   </td>
                   <td className='py-2 px-4 border-b border-gray-200'>
-                    {job.title}
+                    {job.jobId.title}
                   </td>
                   <td className='py-2 px-4 border-b border-gray-200 max-sm:hidden'>
-                    {job.location}
+                    {job.jobId.location}
                   </td>
                   <td className='py-2 px-4 border-b border-gray-200 max-sm:hidden'>
-                    {moment(job.date).format("ll")}
+                    {moment(job.date).format('ll')}
                   </td>
                   <td className='py-2 px-4 border-b border-gray-200'>
                     <span
                       className={`${
-                        job.status === "Accepted"
-                          ? "bg-green-200"
-                          : job.status === "Rejected"
-                          ? "bg-red-200"
-                          : "bg-blue-200"
+                        job.status === 'Accepted'
+                          ? 'bg-green-200'
+                          : job.status === 'Rejected'
+                          ? 'bg-red-200'
+                          : 'bg-blue-200'
                       } px-4 py-1.5 rounded`}
                     >
                       {job.status}

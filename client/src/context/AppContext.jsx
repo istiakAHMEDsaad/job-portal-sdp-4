@@ -3,6 +3,7 @@ import { useAuth, useUser } from '@clerk/clerk-react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const AppContext = createContext();
 
 export const AppContextProvider = (props) => {
@@ -23,7 +24,8 @@ export const AppContextProvider = (props) => {
 
   const [companyData, setCompanyData] = useState(null);
 
-  const { isLoaded, isSignedIn, user } = useUser();
+  // isSignedIn
+  const { isLoaded, user } = useUser();
   const { getToken } = useAuth();
 
   const [userData, setUserData] = useState(null);
@@ -79,6 +81,25 @@ export const AppContextProvider = (props) => {
     }
   };
 
+  // Function to fetch user's applied applications data
+  const fetchUserApplications = async () => {
+    try {
+      const token = await getToken();
+
+      const { data } = await axios.get(`${backendUrl}/api/users/applications`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (data.success) {
+        setUserApplications(data.applications);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
   useEffect(() => {
     fetchJobs();
 
@@ -98,6 +119,7 @@ export const AppContextProvider = (props) => {
   useEffect(() => {
     if (user) {
       fetchUserData();
+      fetchUserApplications();
     }
   }, [user]);
 
@@ -117,6 +139,12 @@ export const AppContextProvider = (props) => {
     companyData,
     setCompanyData,
     backendUrl,
+    userData,
+    setUserData,
+    userApplications,
+    setUserApplications,
+    fetchUserData,
+    fetchUserApplications,
   };
 
   return (
