@@ -1,5 +1,4 @@
 import moment from 'moment';
-import { manageJobsData } from '../assets/assets';
 import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../context/AppContext';
@@ -55,8 +54,6 @@ const ManageJobs = () => {
       fetchCompanyJobs();
     }
   }, [companyToken]);
-
-  console.log(jobs);
 
   return (
     <div className='container p-4 max-w-5xl'>
