@@ -5,7 +5,7 @@ import { AppContext } from '../context/AppContext';
 import axios from 'axios';
 import { useAuth } from '@clerk/clerk-react';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const EditPortfolio = () => {
   const { userData, backendUrl } = useContext(AppContext);
@@ -69,9 +69,19 @@ const EditPortfolio = () => {
     <div>
       <Navbar />
       <div>
+        <div className='ml-4 mt-6 max-sm:block lg:hidden'>
+          <Link
+            className='px-4 py-2 rounded bg-neutral-950 hover:bg-neutral-900 transition-colors cursor-pointer text-gray-200 mb-8'
+            to={-1}
+          >
+            Back
+          </Link>
+        </div>
+
         <p className='text-2xl text-center py-8 text-gray-800'>
           Update Your Information Here
         </p>
+
         <form
           onSubmit={handleSubmit}
           className='mx-auto grid max-w-lg grid-cols-1 gap-4 rounded-lg border border-gray-300 p-6 sm:grid-cols-2'

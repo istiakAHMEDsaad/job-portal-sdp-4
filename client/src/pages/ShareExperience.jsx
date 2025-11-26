@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import { experiences } from "../assets/assets";
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
+import Quill from 'quill';
 
 const ShareExperience = () => {
   const [shareData, setShareData] = useState([]);
@@ -42,7 +43,7 @@ const ShareExperience = () => {
         </div>
 
         {/* Share Box */}
-        <div className='w-full xl:max-w-5xl lg:max-w-4xl md:max-w-2xl mx-auto bg-white p-6 rounded-xl shadow-md mb-10'>
+        {/* <div className='w-full xl:max-w-5xl lg:max-w-4xl md:max-w-2xl mx-auto bg-white p-6 rounded-xl shadow-md mb-10'>
           <textarea
             rows='4'
             placeholder='Write about your job experience...'
@@ -51,7 +52,9 @@ const ShareExperience = () => {
           <button className='mt-3 bg-neutral-950 text-white px-6 py-2 rounded-lg hover:bg-neutral-900 transition-colors cursor-pointer'>
             Share
           </button>
-        </div>
+        </div> */}
+
+
 
         {/* Experiences Section */}
         <div className='max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10'>
