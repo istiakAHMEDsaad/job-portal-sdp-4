@@ -1,26 +1,49 @@
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import { useContext, useEffect, useState } from "react";
-import { AppContext } from "../context/AppContext";
-import Loading from "../components/Loading";
-import { portFolioData } from "../assets/assets";
-import { useNavigate } from "react-router-dom";
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import { useContext, useEffect, useState } from 'react';
+import { AppContext } from '../context/AppContext';
+import Loading from '../components/Loading';
+// import { portFolioData } from '../assets/assets';
+import { useNavigate } from 'react-router-dom';
+import { useAuth, useUser } from '@clerk/clerk-react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Portfolio = () => {
-  const [userData, setUserData] = useState([]);
-  const { isLoaded } = useContext(AppContext);
+  const [userData, setUserData] = useState(null);
+
+  // const [portfolio, setPortfolio] = useState(null);
+  const { isLoaded, backendUrl } = useContext(AppContext);
   const navigate = useNavigate();
 
-  const fetchPortfolioData = async () => {
-    setUserData(portFolioData[0]);
+  const { getToken } = useAuth();
+  const { user } = useUser();
+
+  const fetchPortFolioData = async () => {
+    try {
+      const token = await getToken();
+
+      const { data } = await axios.get(`${backendUrl}/api/users/user-info`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (data.success) {
+        setUserData(data.portfolio);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   useEffect(() => {
-    fetchPortfolioData();
-  }, []);
+    if (user) {
+      fetchPortFolioData();
+    }
+  }, [user]);
 
   const {
-
     image,
     name,
     mobile,
@@ -45,7 +68,7 @@ const Portfolio = () => {
           <div className='flex items-center justify-between max-sm:px-2'>
             <p className='text-xl md:text-2xl'>Review Your Profile</p>
             <button
-              onClick={() => navigate("/portfolio/edit-portfolio")}
+              onClick={() => navigate('/portfolio/edit-portfolio')}
               className='bg-neutral-950 hover:bg-neutral-900 transition-colors text-gray-100 px-5 py-2 rounded-md cursor-pointer'
             >
               Edit
