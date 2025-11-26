@@ -9,6 +9,7 @@ import {
   postUserInfo,
   updateUserResume,
   userInfo,
+  getJobExperienceById
 } from "../controllers/userController.js";
 import upload from "../controllers/multer.js";
 
@@ -35,8 +36,11 @@ router.get("/user-info/:userId", getPortfolioByUserId)
 // Post user info data
 router.post("/post-user-info", postUserInfo);
 
-// Get job experience
-router.get("/job-experieence", getJobExperience);
+// Get all experience
+router.get("/job-experience", getJobExperience);
+
+// Get all experience
+router.get("/job-experience/:userId", getJobExperienceById);
 
 // Post job experience
 router.post("/post-job-experience", postUserExperience);
