@@ -1,5 +1,6 @@
 import Job from '../models/Job.js';
 import JobApplication from '../models/JobApplication.js';
+import JobExperience from '../models/JobExperience.js';
 import User from '../models/User.js';
 import { v2 as cloudinary } from 'cloudinary';
 import Portfolio from '../models/PortFolio.js';
@@ -226,8 +227,74 @@ export const postUserInfo = async (req, res) => {
   }
 };
 
-// Get job experience
-export const getJobExperience = async (req, res) => {};
+// Get all job experience
+export const getJobExperience = async (req, res) => {
+  try {
+    const experiences = await JobExperience.find().sort({ createdAt: -1 });
+
+    res.status(200).json({
+      success: true,
+      message: 'Job experiences fetched successfully',
+      data: experiences,
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: 'server error',
+    });
+  }
+};
+
+// Get job by id
+export const getJobExperienceById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const singleJobData = await JobExperience.findOne({ id });
+
+    if (!singleJobData) {
+      return res.status(404).json({
+        success: false,
+        message: 'Data not found!',
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      message: 'Data found',
+      data: singleJobData,
+    });
+  } catch (error) {
+    return res.status(400).json({ success: false, message: error.message });
+  }
+};
 
 // Post job experience
-export const postUserExperience = async (req, res) => {};
+export const postUserExperience = async (req, res) => {
+  try {
+    const userId = req.auth.userId;
+
+    if (!userId) {
+      return res
+        .status(401)
+        .json({ success: false, message: 'Unauthorized access' });
+    }
+
+    const { description, email, image, name } = req.body;
+
+    const experience = await JobExperience.create({
+      userId,
+      description,
+      email,
+      image,
+      name,
+    });
+
+    res.status(201).json({
+      success: true,
+      message: 'successfully upload the post!',
+      data: experience,
+    });
+  } catch (error) {
+    res.status(400).json({ success: false, message: 'server error!' });
+  }
+};
