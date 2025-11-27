@@ -1,5 +1,5 @@
 import Quill from 'quill';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { useAuth } from '@clerk/clerk-react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -7,7 +7,6 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
-import Loading from '../components/Loading';
 
 const EditJobExperience = () => {
   const editorRef = useRef(null);
@@ -75,6 +74,8 @@ const EditJobExperience = () => {
       toast.error(error.response?.data?.message || error.message);
     }
   };
+
+  
 
   return (
     <div>

@@ -108,7 +108,8 @@ const ShareExperience = () => {
   };
 
   // eslint-disable-next-line no-unused-vars
-  const { description, email, image, name, _id, createdAt, userId } = shareData || {};
+  const { description, email, image, name, _id, createdAt, userId } =
+    shareData || {};
 
   console.log(shareData);
 
@@ -146,7 +147,7 @@ const ShareExperience = () => {
         ) : (
           <>
             {/* Experiences Section */}
-            <div className='container grid grid-cols-3 md:grid-cols-2 max-sm:grid-cols-1 justify-center mx-auto gap-6'>
+            <div className='container grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 justify-center mx-auto gap-6'>
               {currentPosts.map((item) => (
                 <Link
                   to={`/share-experience/${item._id}`}
@@ -172,7 +173,7 @@ const ShareExperience = () => {
 
                     {/* description */}
                     <p
-                      className='mt-0.5 text-gray-700'
+                      className='mt-0.5 text-gray-700 '
                       dangerouslySetInnerHTML={{
                         __html: item.description.slice(0, 100),
                       }}

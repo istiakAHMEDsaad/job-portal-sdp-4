@@ -22,14 +22,14 @@ const JobExperience = () => {
               onClick={() => {navigate("/share-experience"); scrollTo(0, 0);}}
               className='inline-block rounded border border-blue-600 bg-blue-600 px-5 py-3 font-medium text-white shadow-sm transition-colors hover:bg-blue-700 cursor-pointer'
             >
-              Explore Now
+              Experience Hub
             </button>
 
             <button
               onClick={() => navigate("/share-experience")}
               className='inline-block rounded border border-gray-200 px-5 py-3 font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 hover:text-gray-900'
             >
-              Learn More
+              Preparation Hub
             </button>
           </div>
         </div>

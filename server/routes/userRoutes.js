@@ -11,6 +11,7 @@ import {
   userInfo,
   getJobExperienceById,
   editJobExperience,
+  deleteJobExperience,
 } from '../controllers/userController.js';
 import upload from '../controllers/multer.js';
 
@@ -48,5 +49,8 @@ router.post('/post-job-experience', postUserExperience);
 
 // Edit job experience
 router.patch('/edit-job-experience/:id', editJobExperience);
+
+// Delete job experience
+router.delete('/delete-job-experience/:id', deleteJobExperience);
 
 export default router;

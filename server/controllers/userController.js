@@ -337,3 +337,26 @@ export const editJobExperience = async (req, res) => {
     });
   }
 };
+
+// Delete job experience
+export const deleteJobExperience = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const deletePost = await JobExperience.findByIdAndDelete(id);
+
+    if (!deletePost) {
+      return res.status(404).json({
+        success: false,
+        message: 'Post not found!',
+      });
+    }
+
+    res.status(200).json({ success: true, message: 'Post have been deleted!' });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
