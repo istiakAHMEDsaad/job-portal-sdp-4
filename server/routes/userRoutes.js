@@ -1,4 +1,4 @@
-import express from "express";
+import express from 'express';
 import {
   applyForJob,
   getJobExperience,
@@ -9,40 +9,44 @@ import {
   postUserInfo,
   updateUserResume,
   userInfo,
-  getJobExperienceById
-} from "../controllers/userController.js";
-import upload from "../controllers/multer.js";
+  getJobExperienceById,
+  editJobExperience,
+} from '../controllers/userController.js';
+import upload from '../controllers/multer.js';
 
 const router = express.Router();
 
 // Get user data
-router.get("/user", getUserData);
+router.get('/user', getUserData);
 
 // Apply for a job
-router.post("/apply", applyForJob);
+router.post('/apply', applyForJob);
 
 // Get applied jobs data
-router.get("/applications", getUserJobApplications);
+router.get('/applications', getUserJobApplications);
 
 // Update user profile (resume)
-router.post("/update-resume", upload.single("resume"), updateUserResume);
+router.post('/update-resume', upload.single('resume'), updateUserResume);
 
 // Get user info
-router.get("/user-info", userInfo);
+router.get('/user-info', userInfo);
 
 // Get user info by id
-router.get("/user-info/:userId", getPortfolioByUserId)
+router.get('/user-info/:userId', getPortfolioByUserId);
 
 // Post user info data
-router.post("/post-user-info", postUserInfo);
+router.post('/post-user-info', postUserInfo);
 
 // Get all experience
-router.get("/job-experience", getJobExperience);
+router.get('/job-experience', getJobExperience);
 
 // Get all experience
-router.get("/job-experience/:userId", getJobExperienceById);
+router.get('/job-experience/:userId', getJobExperienceById);
 
 // Post job experience
-router.post("/post-job-experience", postUserExperience);
+router.post('/post-job-experience', postUserExperience);
+
+// Edit job experience
+router.patch('/edit-job-experience', editJobExperience);
 
 export default router;

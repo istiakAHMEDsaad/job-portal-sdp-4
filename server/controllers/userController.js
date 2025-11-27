@@ -298,3 +298,8 @@ export const postUserExperience = async (req, res) => {
     res.status(400).json({ success: false, message: 'server error!' });
   }
 };
+
+// Edit job experience
+export const editJobExperience = async (req, res) => {
+  
+}
