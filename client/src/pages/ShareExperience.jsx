@@ -106,6 +106,7 @@ const ShareExperience = () => {
     }
   };
 
+  // eslint-disable-next-line no-unused-vars
   const { description, email, image, name, _id, createdAt } = shareData || {};
 
   return (
