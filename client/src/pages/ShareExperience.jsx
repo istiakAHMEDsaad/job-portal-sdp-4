@@ -99,6 +99,7 @@ const ShareExperience = () => {
       );
       if (res.data.success) {
         quillRef.current.root.innerHTML = '';
+        fetchShareDate();
         toast.success('Your post have been uploaded!');
       }
     } catch (error) {
@@ -107,7 +108,9 @@ const ShareExperience = () => {
   };
 
   // eslint-disable-next-line no-unused-vars
-  const { description, email, image, name, _id, createdAt } = shareData || {};
+  const { description, email, image, name, _id, createdAt, userId } = shareData || {};
+
+  console.log(shareData);
 
   return (
     <div>
@@ -164,8 +167,7 @@ const ShareExperience = () => {
 
                     {/* time */}
                     <p className='text-sm text-gray-500 mb-2'>
-                      Posted:{' '}
-                      {moment(createdAt).format('MMM DD, YYYY, h:mm A')}
+                      Posted: {moment(createdAt).format('MMM DD, YYYY, h:mm A')}
                     </p>
 
                     {/* description */}

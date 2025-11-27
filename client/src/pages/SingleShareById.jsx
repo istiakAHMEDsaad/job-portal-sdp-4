@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -42,12 +42,14 @@ const SingleShareById = () => {
     <div>
       <Navbar />
       <div className='mt-2 ml-1'>
-        <Link
-          to={-1}
-          className='px-4 py-2 rounded text-white bg-neutral-950 hover:bg-neutral-900'
+        <button
+          onClick={() => {
+            navigate('/share-experience');
+          }}
+          className='px-4 py-2 rounded text-white bg-neutral-950 hover:bg-neutral-900 cursor-pointer'
         >
           &lt; Back
-        </Link>
+        </button>
       </div>
 
       {isLoad ? (
@@ -79,7 +81,7 @@ const SingleShareById = () => {
                 {/* button */}
                 <div className='flex flex-col gap-4'>
                   <button
-                    onClick={() => navigate('/edit-job-experience')}
+                    onClick={() => navigate(`/edit-job-experience/${id}`)}
                     className='bg-yellow-500 md:px-6 max-sm:px-4 py-1.5 rounded-md cursor-pointer hover:bg-yellow-400 transition-colors'
                   >
                     Edit

@@ -250,7 +250,7 @@ export const getJobExperienceById = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const singleJobData = await JobExperience.findOne({ id });
+    const singleJobData = await JobExperience.findOne({ _id: id });
 
     if (!singleJobData) {
       return res.status(404).json({
@@ -301,5 +301,39 @@ export const postUserExperience = async (req, res) => {
 
 // Edit job experience
 export const editJobExperience = async (req, res) => {
-  
-}
+  try {
+    const { id } = req.params;
+    const { description } = req.body;
+
+    if (!description) {
+      return res.status(400).json({
+        success: false,
+        message: 'Description is required',
+      });
+    }
+
+    const updated = await JobExperience.findByIdAndUpdate(
+      id,
+      { description },
+      { new: true }
+    );
+
+    if (!updated) {
+      return res.status(404).json({
+        success: false,
+        message: 'Experience not found',
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: 'Post updated successfully',
+      data: updated,
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: 'Server Error',
+    });
+  }
+};

@@ -64,7 +64,7 @@ function App() {
         <Route path='/share-experience' element={<ShareExperience />} />
         <Route path='/share-experience/:id' element={<SingleShareById />} />
         <Route path='/view-applications/:id' element={<ShowUserProfile />} />
-        <Route path='/edit-job-experience' element={<EditJobExperience />} />
+        <Route path='/edit-job-experience/:id' element={<EditJobExperience />} />
         {/* <Route path='*' element={<Navigate to='/' />} /> */}
       </Routes>
     </div>

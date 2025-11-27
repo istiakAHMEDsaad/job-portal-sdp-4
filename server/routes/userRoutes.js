@@ -40,13 +40,13 @@ router.post('/post-user-info', postUserInfo);
 // Get all experience
 router.get('/job-experience', getJobExperience);
 
-// Get all experience
-router.get('/job-experience/:userId', getJobExperienceById);
+// Get experience by id
+router.get('/job-experience/:id', getJobExperienceById);
 
 // Post job experience
 router.post('/post-job-experience', postUserExperience);
 
 // Edit job experience
-router.patch('/edit-job-experience', editJobExperience);
+router.patch('/edit-job-experience/:id', editJobExperience);
 
 export default router;
