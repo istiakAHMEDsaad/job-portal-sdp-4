@@ -99,6 +99,7 @@ const ShareExperience = () => {
       );
       if (res.data.success) {
         quillRef.current.root.innerHTML = '';
+        fetchShareDate();
         toast.success('Your post have been uploaded!');
       }
     } catch (error) {
@@ -106,8 +107,20 @@ const ShareExperience = () => {
     }
   };
 
-  // eslint-disable-next-line no-unused-vars
-  const { description, email, image, name, _id, createdAt } = shareData || {};
+  const extractH2Text = (htmlString) => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlString, "text/html");
+    const h2 = doc.querySelector("h2");
+    return h2 ? h2.textContent : "";
+  };
+
+  const extractPara = (htmlString) => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlString, "text/html");
+    const p = doc.querySelector("p");
+    return p ? p.textContent : "";
+  }
+
 
   return (
     <div>
@@ -143,39 +156,23 @@ const ShareExperience = () => {
         ) : (
           <>
             {/* Experiences Section */}
-            <div className='container grid grid-cols-3 md:grid-cols-2 max-sm:grid-cols-1 justify-center mx-auto gap-6'>
+            <div className='container grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 justify-center mx-auto gap-6'>
               {currentPosts.map((item) => (
-                <Link
-                  to={`/share-experience/${item._id}`}
-                  key={item._id}
-                  className='flex flex-row-reverse items-end gap-4 border border-gray-200 rounded shadow-sm py-2 px-2'
-                >
-                  <img
-                    alt='image'
-                    src={item?.image}
-                    className='size-20 rounded object-cover'
-                  />
-
-                  <div>
-                    {/* name */}
-                    <h3 className='font-medium text-gray-900 sm:text-lg'>
-                      {item.name}
-                    </h3>
-
-                    {/* time */}
-                    <p className='text-sm text-gray-500 mb-2'>
-                      Posted:{' '}
-                      {moment(createdAt).format('MMM DD, YYYY, h:mm A')}
-                    </p>
-
-                    {/* description */}
-                    <p
-                      className='mt-0.5 text-gray-700'
-                      dangerouslySetInnerHTML={{
-                        __html: item.description.slice(0, 100),
-                      }}
-                    ></p>
+                <Link to={`/share-experience/${item._id}`}
+                  key={item._id} className="w-full border border-gray-200 p-6 rounded-xl mx-2 max-w-4xl">
+                  <div className="flex flex-col md:flex-row items-start gap-3 md:items-center justify-between w-full text-gray-500">
+                    <div className="flex flex-col md:flex-row items-start md:items-center gap-3">
+                      <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
+                        <img className="w-20 h-20 object-cover rounded-md" src={item?.image} alt="image" />
+                      </div>
+                      <div>
+                        <h3 className="text-base font-medium text-gray-800">{item?.name}</h3>
+                        <div>{extractH2Text(item?.description)}</div>
+                      </div>
+                    </div>
+                    <div>{moment(item?.createdAt).format('MMM DD, YYYY, h:mm A')}</div>
                   </div>
+                  <p className='text-gray-500'>{extractPara(item?.description).slice(0, 100)}</p>
                 </Link>
               ))}
             </div>

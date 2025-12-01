@@ -232,7 +232,7 @@ const JobListing = () => {
                     currentPage === index + 1
                       ? 'bg-blue-100 text-blue-500'
                       : 'text-gray-500'
-                  }`}
+                  } cursor-pointer`}
                 >
                   {index + 1}
                 </button>

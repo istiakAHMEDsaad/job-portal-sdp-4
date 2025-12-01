@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -7,10 +7,12 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Loading from '../components/Loading';
 import moment from 'moment';
+import { useAuth } from '@clerk/clerk-react';
 
 const SingleShareById = () => {
   const { id } = useParams();
   const { backendUrl } = useContext(AppContext);
+  const { getToken } = useAuth();
 
   const navigate = useNavigate();
 
@@ -36,18 +38,67 @@ const SingleShareById = () => {
     getDetails();
   }, []);
 
+  const handleDeleteConfirm = () => {
+    toast(
+      ({ closeToast }) => (
+        <div className='text-center'>
+          <p className='font-medium mb-2'>Are you sure you want to delete?</p>
+          <div className='flex justify-center items-center gap-3'>
+            <button
+              onClick={() => {
+                closeToast();
+                handleDelete();
+              }}
+              className='px-4 py-1 bg-red-600 text-white rounded'
+            >
+              Yes
+            </button>
+
+            <button
+              onClick={closeToast}
+              className='px-4 py-1 bg-gray-300 rounded'
+            >
+              No
+            </button>
+          </div>
+        </div>
+      ),
+      { autoClose: false }
+    );
+  };
+
+  const handleDelete = async () => {
+    const token = await getToken();
+
+    try {
+      const { data } = await axios.delete(
+        `${backendUrl}/api/users/delete-job-experience/${id}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      if (data.success) {
+        toast.success('Post deleted successfully!');
+        navigate('/share-experience');
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || error.message);
+    }
+  };
+
   const { description, email, image, name, updatedAt } = details || {};
 
   return (
     <div>
       <Navbar />
       <div className='mt-2 ml-1'>
-        <Link
-          to={-1}
-          className='px-4 py-2 rounded text-white bg-neutral-950 hover:bg-neutral-900'
+        <button
+          onClick={() => {
+            navigate('/share-experience');
+          }}
+          className='px-4 py-2 rounded text-white bg-neutral-950 hover:bg-neutral-900 cursor-pointer'
         >
           &lt; Back
-        </Link>
+        </button>
       </div>
 
       {isLoad ? (
@@ -79,12 +130,15 @@ const SingleShareById = () => {
                 {/* button */}
                 <div className='flex flex-col gap-4'>
                   <button
-                    onClick={() => navigate('/edit-job-experience')}
+                    onClick={() => navigate(`/edit-job-experience/${id}`)}
                     className='bg-yellow-500 md:px-6 max-sm:px-4 py-1.5 rounded-md cursor-pointer hover:bg-yellow-400 transition-colors'
                   >
                     Edit
                   </button>
-                  <button className='bg-red-600 md:px-6 max-sm:px-4 py-1.5 rounded-md cursor-pointer hover:bg-red-500 transition-colors'>
+                  <button
+                    onClick={handleDeleteConfirm}
+                    className='bg-red-600 md:px-6 max-sm:px-4 py-1.5 rounded-md cursor-pointer hover:bg-red-500 transition-colors'
+                  >
                     Delete
                   </button>
                 </div>
@@ -93,7 +147,7 @@ const SingleShareById = () => {
               <div className='border-b border-gray-300 mt-3' />
               {/* description */}
               <div
-                className='w-full'
+                className='w-full rich-text'
                 dangerouslySetInnerHTML={{ __html: description }}
               ></div>
             </div>

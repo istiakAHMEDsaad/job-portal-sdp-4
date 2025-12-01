@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const JobExperience = () => {
   const navigate = useNavigate();
@@ -19,17 +19,20 @@ const JobExperience = () => {
 
           <div className='mt-4 flex gap-4 sm:mt-6'>
             <button
-              onClick={() => {navigate("/share-experience"); scrollTo(0, 0);}}
+              onClick={() => {
+                navigate('/share-experience');
+                scrollTo(0, 0);
+              }}
               className='inline-block rounded border border-blue-600 bg-blue-600 px-5 py-3 font-medium text-white shadow-sm transition-colors hover:bg-blue-700 cursor-pointer'
             >
-              Explore Now
+              Experience Hub
             </button>
 
             <button
-              onClick={() => navigate("/share-experience")}
-              className='inline-block rounded border border-gray-200 px-5 py-3 font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 hover:text-gray-900'
+              onClick={() => navigate('/job-preparation')}
+              className='inline-block rounded border border-gray-200 px-5 py-3 font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 cursor-pointer'
             >
-              Learn More
+              Preparation Hub
             </button>
           </div>
         </div>

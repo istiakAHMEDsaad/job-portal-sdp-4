@@ -11,8 +11,10 @@ import {
   userInfo,
   getJobExperienceById,
   editJobExperience,
+  deleteJobExperience,
 } from '../controllers/userController.js';
 import upload from '../controllers/multer.js';
+import { requireAuth } from "@clerk/express";
 
 const router = express.Router();
 
@@ -40,13 +42,16 @@ router.post('/post-user-info', postUserInfo);
 // Get all experience
 router.get('/job-experience', getJobExperience);
 
-// Get all experience
-router.get('/job-experience/:userId', getJobExperienceById);
+// Get experience by id
+router.get('/job-experience/:id', getJobExperienceById);
 
 // Post job experience
 router.post('/post-job-experience', postUserExperience);
 
 // Edit job experience
-router.patch('/edit-job-experience', editJobExperience);
+router.patch('/edit-job-experience/:id', editJobExperience);
+
+// Delete job experience
+router.delete('/delete-job-experience/:id', deleteJobExperience);
 
 export default router;

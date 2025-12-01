@@ -19,6 +19,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import ShowUserProfile from './pages/ShowUserProfile';
 import SingleShareById from './pages/SingleShareById';
 import EditJobExperience from './pages/EditJobExperience';
+import JobPreparation from './pages/JobPreparation';
 
 function App() {
   const { showRecruiterLogin, companyToken } = useContext(AppContext);
@@ -64,7 +65,11 @@ function App() {
         <Route path='/share-experience' element={<ShareExperience />} />
         <Route path='/share-experience/:id' element={<SingleShareById />} />
         <Route path='/view-applications/:id' element={<ShowUserProfile />} />
-        <Route path='/edit-job-experience' element={<EditJobExperience />} />
+        <Route
+          path='/edit-job-experience/:id'
+          element={<EditJobExperience />}
+        />
+        <Route path='/job-preparation' element={<JobPreparation />} />
         {/* <Route path='*' element={<Navigate to='/' />} /> */}
       </Routes>
     </div>
