@@ -30,7 +30,7 @@ const JobExperience = () => {
 
             <button
               onClick={() => navigate('/job-preparation')}
-              className='inline-block rounded border border-gray-200 px-5 py-3 font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 hover:text-gray-900'
+              className='inline-block rounded border border-gray-200 px-5 py-3 font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 cursor-pointer'
             >
               Preparation Hub
             </button>

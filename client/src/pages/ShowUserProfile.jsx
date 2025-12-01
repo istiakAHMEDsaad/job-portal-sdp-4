@@ -32,7 +32,7 @@ const ShowUserProfile = () => {
   const {
     image,
     name,
-    mobile,
+    phone,
     email,
     address,
     about,
@@ -80,7 +80,7 @@ const ShowUserProfile = () => {
                 <div className='text-gray-900 font-semibold'>
                   <p>Name: {name}</p>
                   <p>Email: {email}</p>
-                  <p>Mobile: {mobile}</p>
+                  <p>Mobile: {phone}</p>
                   <p>Address: {address}</p>
                 </div>
               </div>

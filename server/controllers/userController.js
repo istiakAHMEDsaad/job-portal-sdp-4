@@ -117,7 +117,9 @@ export const userInfo = async (req, res) => {
     const portfolio = await Portfolio.findOne({ userId });
 
     if (!portfolio) {
-      res.status(404).json({ success: false, message: 'No portfolio found' });
+      return res
+        .status(404)
+        .json({ success: false, message: 'No portfolio found' });
     }
 
     res.status(200).json({
@@ -214,6 +216,7 @@ export const postUserInfo = async (req, res) => {
       education,
       skill,
       experience,
+      objective,
       about,
     });
 

@@ -14,6 +14,7 @@ import {
   deleteJobExperience,
 } from '../controllers/userController.js';
 import upload from '../controllers/multer.js';
+import { requireAuth } from "@clerk/express";
 
 const router = express.Router();
 
