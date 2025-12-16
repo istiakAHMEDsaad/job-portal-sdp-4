@@ -11,6 +11,25 @@
   }
 }
 
+@media print {
+  button {
+    display: none;
+  }
+}
+
+@layer base {
+  img {
+    display: initial;
+  }
+}
+
+.pdf-safe,
+.pdf-safe * {
+  color: #000 !important;
+  background-color: #fff !important;
+  border-color: #e5e7eb !important;
+}
+
 /* ::-webkit-scrollbar {
   display: none;
 } */

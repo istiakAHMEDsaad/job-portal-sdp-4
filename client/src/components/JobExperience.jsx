@@ -1,7 +1,32 @@
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AppContext } from '../context/AppContext';
+import { toast } from 'react-toastify';
 
 const JobExperience = () => {
   const navigate = useNavigate();
+  const { user } = useContext(AppContext);
+
+  const navigateExperienc = async () => {
+    const isLogin = await user;
+    if (!isLogin) {
+      return toast.warn('Please Login To Explore');
+    }
+
+    navigate('/share-experience');
+    scrollTo(0, 0);
+  };
+
+  const navigatePreparation = async () => {
+    const isLogin = await user;
+    if (!isLogin) {
+      return toast.warn('Please Login To Explore');
+    }
+
+    navigate('/job-preparation');
+    scrollTo(0, 0);
+  };
+
   return (
     <section className='bg-white lg:grid lg:h-screen lg:place-content-center'>
       <div className='mx-auto w-screen max-w-7xl px-4 py-16 sm:px-6 sm:py-24 md:grid md:grid-cols-2 md:items-center md:gap-4 lg:px-8 lg:py-32'>
@@ -19,17 +44,14 @@ const JobExperience = () => {
 
           <div className='mt-4 flex gap-4 sm:mt-6'>
             <button
-              onClick={() => {
-                navigate('/share-experience');
-                scrollTo(0, 0);
-              }}
+              onClick={navigateExperienc}
               className='inline-block rounded border border-blue-600 bg-blue-600 px-5 py-3 font-medium text-white shadow-sm transition-colors hover:bg-blue-700 cursor-pointer'
             >
               Experience Hub
             </button>
 
             <button
-              onClick={() => navigate('/job-preparation')}
+              onClick={navigatePreparation}
               className='inline-block rounded border border-gray-200 px-5 py-3 font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 cursor-pointer'
             >
               Preparation Hub

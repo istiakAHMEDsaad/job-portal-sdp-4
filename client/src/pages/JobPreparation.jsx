@@ -1,8 +1,17 @@
 import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import JobPrepare from '../assets/gif/interview.gif'
-import ResumePrepare from '../assets/gif/resume.gif'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import JobPrepare from '../assets/gif/interview.gif';
+import ResumePrepare from '../assets/gif/resume.gif';
+import Question from '../assets/gif/Interview-Process.gif';
+import Job from '../assets/gif/job.gif';
+import Advice from '../assets/gif/Career_Advice.gif';
+import Running from '../assets/gif/running.gif'
+import IndeedAd from '../assets/gif/indeed.gif';
+import SoftwareDev from '../assets/gif/Developers.gif';
+import Softskill from '../assets/gif/soft-skills.gif';
 
 const JobPreparation = () => {
   const [search, setSearch] = useState('');
@@ -28,7 +37,7 @@ const JobPreparation = () => {
     {
       type: 'Video',
       title: 'Top 50 Interview Questions',
-      thumbnail: JobPrepare,
+      thumbnail: Question,
       link: 'https://www.youtube.com/watch?v=DHDrj0_bMQ0',
       description:
         'Conveniently underwhelm end-to-end interfaces before excellent niche markets. Enthusiastically visualize impactful networks without emerging metrics. Enthusiastically myocardinate bleeding-edge paradigms before.',
@@ -39,7 +48,7 @@ const JobPreparation = () => {
     {
       type: 'Blog',
       name: 'BDJobs Career Blog',
-      thumbnail: JobPrepare,
+      thumbnail: Job,
       link: 'https://blog.bdjobs.com/',
       description:
         'Collaboratively redefine stand-alone deliverables rather than out-of-the-box action items. Rapidiously redefine performance based information rather than one-to-one infomediaries. Quickly strategize.',
@@ -47,7 +56,7 @@ const JobPreparation = () => {
     {
       type: 'Blog',
       name: 'LinkedIn Career Advice',
-      thumbnail: JobPrepare,
+      thumbnail: Advice,
       link: 'https://www.linkedin.com/advice/',
       description:
         'Professionally negotiate leveraged supply chains with highly efficient meta-services. Quickly transform future-proof e-services through tactical niches. Quickly reconceptualize visionary core.',
@@ -55,7 +64,7 @@ const JobPreparation = () => {
     {
       type: 'Blog',
       name: 'Indeed Career Guide',
-      thumbnail: JobPrepare,
+      thumbnail: Running,
       link: 'https://www.indeed.com/career-advice',
       description:
         'Progressively re-engineer functionalized process improvements before just in time quality vectors. Appropriately disseminate distinctive best practices via installed base models.',
@@ -67,7 +76,7 @@ const JobPreparation = () => {
       type: 'Book',
       title: 'Cracking the Coding Interview',
       author: 'Gayle Laakmann McDowell',
-      thumbnail: JobPrepare,
+      thumbnail: IndeedAd,
       link: 'https://www.amazon.com/dp/0984782850',
       description:
         'Monotonectally facilitate real-time resources via client-centered e-business. Monotonectally promote impactful channels before accurate internal or "organic" sources. Authoritatively promote covalent.',
@@ -76,7 +85,7 @@ const JobPreparation = () => {
       type: 'Book',
       title: 'The Software Developer’s Career Guide',
       author: 'John Sonmez',
-      thumbnail: JobPrepare,
+      thumbnail: SoftwareDev,
       link: 'https://www.amazon.com/dp/0999081411',
       description:
         'Collaboratively repurpose fully tested models and go forward e-business. Enthusiastically pursue extensive initiatives through pandemic services. Energistically evolve B2B innovation.',
@@ -85,7 +94,7 @@ const JobPreparation = () => {
       type: 'Book',
       title: 'Soft Skills — Developer’s Life',
       author: 'John Sonmez',
-      thumbnail: JobPrepare,
+      thumbnail: Softskill,
       link: 'https://www.amazon.com/dp/1617292397',
       description:
         'Interactively synergize quality expertise rather than synergistic ROI. Conveniently exploit extensive imperatives after end-to-end manufactured products. Rapidiously develop focused portals.',
@@ -146,34 +155,15 @@ const JobPreparation = () => {
         {/* Cards */}
         <div className='grid md:grid-cols-3 gap-6'>
           {filteredData.map((item, idx) => (
-            // <a
-            //   key={i}
-            //   href={item.link}
-            //   target='_blank'
-            //   className='p-6 bg-white border border-gray-300 rounded-xl shadow lg:hover:scale-[103%] transition-transform'
-            // >
-            //   <p className='text-sm font-semibold text-blue-600'>{item.type}</p>
-
-            //   {/* <DotLottieReact src={item.lottiPath} loop autoplay /> */}
-            //   <h3 className='text-md font-bold mt-2'>
-            //     {item.title || item.name}
-            //   </h3>
-            //   {item.author && (
-            //     <p className='text-gray-600 mt-1'>By: {item.author}</p>
-            //   )}
-            //   <button className='mt-4 inline-block text-blue-500 underline'>
-            //     Open →
-            //   </button>
-            // </a>
-
             <div
               key={idx}
               className='relative max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm flex flex-col items-start justify-between'
             >
-              <img
+              <LazyLoadImage
                 className='rounded-t-lg w-96 h-56 object-cover object-top'
                 src={item.thumbnail}
                 alt='image'
+                effect='blur'
               />
 
               <div className='p-5'>
