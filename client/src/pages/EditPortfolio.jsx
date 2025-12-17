@@ -1,20 +1,29 @@
-import { useState } from "react";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
+import Footer from '../components/Footer';
+import Navbar from '../components/Navbar';
+import { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
+import axios from 'axios';
+import { useAuth } from '@clerk/clerk-react';
+import { toast } from 'react-toastify';
+import { Link, useNavigate } from 'react-router-dom';
 
 const EditPortfolio = () => {
-  const [image, setImage] = useState(false);
+  const { userData, backendUrl } = useContext(AppContext);
+  const { email, image, name } = userData || {};
+  const { getToken } = useAuth();
 
-  const handleSubmit = (event) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const form = new FormData(event.target);
-    const name = form.get("name");
-    const email = form.get("email");
-    const phone = form.get("phone");
-    const education = form.get("education");
-    const rawSkill = form.get("programmingLanguage");
-    const address = form.get("address");
-    const about = form.get("about");
+    const phone = form.get('phone');
+    const address = form.get('address');
+    const education = form.get('education');
+    const rawSkill = form.get('programmingLanguage');
+    const experience = form.get('experience');
+    const about = form.get('about');
+    const objective = form.get('objective');
 
     const skill = rawSkill
       ? rawSkill
@@ -25,24 +34,54 @@ const EditPortfolio = () => {
 
     const finalData = {
       name,
+      image,
       email,
       phone,
       address,
-      skill,
       education,
+      skill,
+      experience,
+      objective,
       about,
     };
 
-    console.log(finalData);
+    try {
+      const token = await getToken();
+      const { data } = await axios.post(
+        `${backendUrl}/api/users/post-user-info`,
+        finalData,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      if (data.success) {
+        toast.success(data.message);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+
+    navigate('/portfolio');
   };
 
   return (
     <div>
       <Navbar />
       <div>
+        <div className='ml-4 mt-6 max-sm:block lg:hidden'>
+          <Link
+            className='px-4 py-2 rounded bg-neutral-950 hover:bg-neutral-900 transition-colors cursor-pointer text-gray-200 mb-8'
+            to={-1}
+          >
+            Back
+          </Link>
+        </div>
+
         <p className='text-2xl text-center py-8 text-gray-800'>
           Update Your Information Here
         </p>
+
         <form
           onSubmit={handleSubmit}
           className='mx-auto grid max-w-lg grid-cols-1 gap-4 rounded-lg border border-gray-300 p-6 sm:grid-cols-2'
@@ -62,42 +101,20 @@ const EditPortfolio = () => {
               type='text'
               name='name'
               placeholder='Your name'
+              defaultValue={name}
+              disabled
             />
           </div>
 
           {/* image */}
+          <label htmlFor='image'>Image</label>
           <div className='md:col-span-2'>
-            <label
-              className='block text-sm font-medium text-gray-900'
-              for='image'
+            <div
+              id='image'
+              className='border border-gray-300 shadow inline-block p-2 rounded'
             >
-              Profile Picture
-            </label>
-            {!image ? (
-              <>
-                <input
-                  onChange={(e) => setImage(e.target.files[0])}
-                  className='mt-1 w-full rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none px-3 py-2'
-                  id='image'
-                  name='image'
-                  type='file'
-                />
-              </>
-            ) : (
-              <div className='flex gap-5 items-center justify-center'>
-                <img
-                  className='w-20 h-20 object-contain rounded-full'
-                  src={image ? URL.createObjectURL(image) : ""}
-                  alt='image'
-                />
-                {/* <button className="py-1 px-2 bg-neutral-950 text-white">edit</button> */}
-                <input
-                  onChange={(e) => setImage(e.target.files[0])}
-                  className='w-23 pl-1 rounded-md bg-gray-100 py-2 border border-gray-500'
-                  type='file'
-                />
-              </div>
-            )}
+              <img className='w-14 rounded' src={image} alt='avatar' />
+            </div>
           </div>
 
           {/* email */}
@@ -115,6 +132,8 @@ const EditPortfolio = () => {
               name='email'
               type='email'
               placeholder='Your email'
+              value={email}
+              disabled
             />
           </div>
 
@@ -204,7 +223,25 @@ const EditPortfolio = () => {
               id='experience'
               name='experience'
               type='text'
-              placeholder='Tell your previous job experience (if no type none)'
+              placeholder='Tell your previous job experience'
+            />
+          </div>
+
+          {/* objective */}
+          <div className='md:col-span-2'>
+            <label
+              className='block text-sm font-medium text-gray-900'
+              for='objective'
+            >
+              Objective
+            </label>
+
+            <input
+              className='mt-1 w-full rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none px-3 py-2'
+              id='objective'
+              name='objective'
+              type='text'
+              placeholder='Tell your life objective or goal'
             />
           </div>
 
@@ -222,7 +259,7 @@ const EditPortfolio = () => {
               id='about'
               name='about'
               rows='4'
-              placeholder='Description here...'
+              placeholder='Tell about yourself...'
             ></textarea>
           </div>
 

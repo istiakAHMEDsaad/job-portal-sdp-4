@@ -1,0 +1,57 @@
+import express from 'express';
+import {
+  applyForJob,
+  getJobExperience,
+  getPortfolioByUserId,
+  getUserData,
+  getUserJobApplications,
+  postUserExperience,
+  postUserInfo,
+  updateUserResume,
+  userInfo,
+  getJobExperienceById,
+  editJobExperience,
+  deleteJobExperience,
+} from '../controllers/userController.js';
+import upload from '../controllers/multer.js';
+import { requireAuth } from "@clerk/express";
+
+const router = express.Router();
+
+// Get user data
+router.get('/user', getUserData);
+
+// Apply for a job
+router.post('/apply', applyForJob);
+
+// Get applied jobs data
+router.get('/applications', getUserJobApplications);
+
+// Update user profile (resume)
+router.post('/update-resume', upload.single('resume'), updateUserResume);
+
+// Get user info
+router.get('/user-info', userInfo);
+
+// Get user info by id
+router.get('/user-info/:userId', getPortfolioByUserId);
+
+// Post user info data
+router.post('/post-user-info', postUserInfo);
+
+// Get all experience
+router.get('/job-experience', getJobExperience);
+
+// Get experience by id
+router.get('/job-experience/:id', getJobExperienceById);
+
+// Post job experience
+router.post('/post-job-experience', postUserExperience);
+
+// Edit job experience
+router.patch('/edit-job-experience/:id', editJobExperience);
+
+// Delete job experience
+router.delete('/delete-job-experience/:id', deleteJobExperience);
+
+export default router;

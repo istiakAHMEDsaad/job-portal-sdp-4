@@ -1,35 +1,59 @@
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import { assets } from "../assets/assets";
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { assets } from '../assets/assets';
+import { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
+import { useEffect } from 'react';
 
 const Dashboard = () => {
   const navigate = useNavigate();
+
+  const { companyData, setCompanyData, setCompanyToken } =
+    useContext(AppContext);
+
+  // Function to logout for company
+  const logout = () => {
+    setCompanyToken(null);
+    localStorage.removeItem('companyToken');
+    setCompanyData(null);
+    navigate('/');
+  };
+
+  useEffect(() => {
+    if (companyData) {
+      navigate('/dashboard/manage-job');
+    }
+  }, [companyData]);
+
   return (
     <div className='min-h-screen'>
       {/* navbar for recruiter panael */}
       <div className='shadow py-4'>
         <div className='px-5 flex justify-between items-center'>
-          <img
-            onClick={() => navigate("/")}
-            className='max-sm:w-32 cursor-pointer'
-            src={assets.logo}
-            alt='logo'
-          />
-          <div className='flex items-center gap-3'>
-            <p className='max-sm:hidden'>Welcome to JobPortal</p>
-            <div className='relative group'>
-              <img
-                className='w-8 border border-gray-200 rounded-full'
-                src={assets.company_icon}
-                alt='company icon'
-              />
-              {/* dropdown */}
-              <div className='absolute hidden group-hover:block top-0 right-0 z-10 text-black rounded pt-12'>
-                <ul className='list-none m-0 p-2 bg-white rounded-md border border-gray-200 text-sm'>
-                  <li className='py-1 px-2 cursor-pointer pr-10'>Logout</li>
-                </ul>
+          <img className='max-sm:w-32' src={assets.logo} alt='logo' />
+
+          {companyData && (
+            <div className='flex items-center gap-3'>
+              <p className='max-sm:hidden'>Welcome to {companyData?.name}</p>
+              <div className='relative group'>
+                <img
+                  className='w-8 border border-gray-200 rounded-full'
+                  src={companyData?.image}
+                  alt='company icon'
+                />
+                {/* dropdown */}
+                <div className='absolute hidden group-hover:block top-0 right-0 z-10 text-black rounded pt-12'>
+                  <ul className='list-none m-0 p-2 bg-white rounded-md border border-gray-200 text-sm'>
+                    <li
+                      onClick={logout}
+                      className='py-1 px-2 cursor-pointer pr-10'
+                    >
+                      Logout
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
 
@@ -41,10 +65,10 @@ const Dashboard = () => {
             <NavLink
               className={({ isActive }) =>
                 ` flex items-center p-3 sm:px-6 gap-2 w-full hover:bg-gray-100 ${
-                  isActive && "bg-blue-100 border-r-4 border-blue-500"
+                  isActive && 'bg-blue-100 border-r-4 border-blue-500'
                 }`
               }
-              to={"/dashboard/add-job"}
+              to={'/dashboard/add-job'}
             >
               <img className='min-w-4' src={assets.add_icon} alt='add icon' />
               <p className='max-sm:hidden'>Add Job</p>
@@ -53,10 +77,10 @@ const Dashboard = () => {
             <NavLink
               className={({ isActive }) =>
                 ` flex items-center p-3 sm:px-6 gap-2 w-full hover:bg-gray-100 ${
-                  isActive && "bg-blue-100 border-r-4 border-blue-500"
+                  isActive && 'bg-blue-100 border-r-4 border-blue-500'
                 }`
               }
-              to={"/dashboard/manage-job"}
+              to={'/dashboard/manage-job'}
             >
               <img className='min-w-4' src={assets.home_icon} alt='add icon' />
               <p className='max-sm:hidden'>Manage Job</p>
@@ -65,10 +89,10 @@ const Dashboard = () => {
             <NavLink
               className={({ isActive }) =>
                 ` flex items-center p-3 sm:px-6 gap-2 w-full hover:bg-gray-100 ${
-                  isActive && "bg-blue-100 border-r-4 border-blue-500"
+                  isActive && 'bg-blue-100 border-r-4 border-blue-500'
                 }`
               }
-              to={"/dashboard/view-applications"}
+              to={'/dashboard/view-applications'}
             >
               <img
                 className='min-w-4'
@@ -81,7 +105,7 @@ const Dashboard = () => {
         </div>
 
         {/* right sidebar */}
-        <div>
+        <div className='flex-1 h-full p-2 sm:p-5'>
           <Outlet />
         </div>
       </div>

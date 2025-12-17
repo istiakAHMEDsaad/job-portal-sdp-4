@@ -1,8 +1,8 @@
-import { Link, useNavigate } from "react-router-dom";
-import { assets } from "../assets/assets";
-import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
-import { useContext } from "react";
-import { AppContext } from "../context/AppContext";
+import { Link, useNavigate } from 'react-router-dom';
+import { assets } from '../assets/assets';
+import { useClerk, UserButton, useUser } from '@clerk/clerk-react';
+import { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
 
 const Navbar = () => {
   const { openSignIn } = useClerk();
@@ -12,13 +12,11 @@ const Navbar = () => {
 
   const { setShowRecruiterLogin } = useContext(AppContext);
 
-  // console.log(user);
-
   return (
     <div className='shadow py-4'>
       <div className='container md:px-4 2xl:px-20 mx-auto flex justify-between items-center'>
         <img
-          onClick={() => navigate("/")}
+          onClick={() => navigate('/')}
           className='cursor-pointer'
           src={assets.logo}
           alt='logo'
@@ -29,7 +27,7 @@ const Navbar = () => {
           <div className='flex items-center gap-2'>
             <Link
               className='text-gray-600 hover:text-gray-900 hover:underline transition-all'
-              to={"/applications"}
+              to={'/applications'}
             >
               Applied Jobs
             </Link>
@@ -40,7 +38,7 @@ const Navbar = () => {
                 Hi,
                 <span className='italic'>
                   {user?.firstName && user?.lastName
-                    ? user?.firstName + " " + user?.lastName
+                    ? user?.firstName + ' ' + user?.lastName
                     : user?.username.slice(0, 9)}
                 </span>
               </p>
