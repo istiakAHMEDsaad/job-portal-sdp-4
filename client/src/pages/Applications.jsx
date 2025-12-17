@@ -66,7 +66,7 @@ const Applications = () => {
       ({ closeToast }) => (
         <div className='text-center py-2'>
           <p className='font-semibold text-gray-800 mb-4'>
-            Are you sure you want to delete this item?
+            Are you sure you want to report this job?
           </p>
 
           <div className='flex justify-center gap-4'>
@@ -77,7 +77,7 @@ const Applications = () => {
               }}
               className='px-5 py-2 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1'
             >
-              Yes, Delete
+              Yes
             </button>
 
             <button

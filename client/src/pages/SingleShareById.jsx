@@ -11,7 +11,7 @@ import { useAuth } from '@clerk/clerk-react';
 
 const SingleShareById = () => {
   const { id } = useParams();
-  const { backendUrl } = useContext(AppContext);
+  const { backendUrl, user } = useContext(AppContext);
   const { getToken } = useAuth();
 
   const navigate = useNavigate();
@@ -93,6 +93,7 @@ const SingleShareById = () => {
   };
 
   const { description, email, image, name, updatedAt } = details || {};
+  const authEmail = user?.primaryEmailAddress?.emailAddress;
 
   return (
     <div>
@@ -135,20 +136,24 @@ const SingleShareById = () => {
                 </div>
 
                 {/* button */}
-                <div className='flex flex-col gap-4'>
-                  <button
-                    onClick={() => navigate(`/edit-job-experience/${id}`)}
-                    className='bg-yellow-500 md:px-6 max-sm:px-4 py-1.5 rounded-md cursor-pointer hover:bg-yellow-400 transition-colors'
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={handleDeleteConfirm}
-                    className='bg-red-600 md:px-6 max-sm:px-4 py-1.5 rounded-md cursor-pointer hover:bg-red-500 transition-colors'
-                  >
-                    Delete
-                  </button>
-                </div>
+                {email && authEmail ? (
+                  <div className='flex flex-col gap-4'>
+                    <button
+                      onClick={() => navigate(`/edit-job-experience/${id}`)}
+                      className='bg-yellow-500 md:px-6 max-sm:px-4 py-1.5 rounded-md cursor-pointer hover:bg-yellow-400 transition-colors'
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={handleDeleteConfirm}
+                      className='bg-red-600 md:px-6 max-sm:px-4 py-1.5 rounded-md cursor-pointer hover:bg-red-500 transition-colors'
+                    >
+                      Delete
+                    </button>
+                  </div>
+                ) : (
+                  ''
+                )}
               </div>
               {/* divider */}
               <div className='border-b border-gray-300 mt-3' />
