@@ -24,7 +24,6 @@ const SingleShareById = () => {
       const { data } = await axios.get(
         `${backendUrl}/api/users/job-experience/${id}`
       );
-      console.log(data);
       if (data.success) {
         setDetails(data.data);
         setIsLoad(false);
