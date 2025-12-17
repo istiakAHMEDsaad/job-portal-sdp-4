@@ -75,8 +75,6 @@ const EditJobExperience = () => {
     }
   };
 
-  
-
   return (
     <div>
       <Navbar />

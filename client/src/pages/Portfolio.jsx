@@ -96,7 +96,7 @@ const Portfolio = () => {
 
             <button
               onClick={() => navigate('/portfolio/edit-portfolio')}
-              className='bg-neutral-950 hover:bg-neutral-900 text-white px-5 py-2 rounded-md transition'
+              className='bg-neutral-950 hover:bg-neutral-900 text-white px-5 py-2 rounded-md transition cursor-pointer'
             >
               Edit Profile
             </button>

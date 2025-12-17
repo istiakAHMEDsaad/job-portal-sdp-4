@@ -63,7 +63,14 @@ const SingleShareById = () => {
           </div>
         </div>
       ),
-      { autoClose: false }
+      {
+        autoClose: false,
+        closeButton: false,
+        closeOnClick: false,
+        draggable: false,
+        position: 'top-right',
+        className: 'rounded-xl shadow-2xl',
+      }
     );
   };
 
