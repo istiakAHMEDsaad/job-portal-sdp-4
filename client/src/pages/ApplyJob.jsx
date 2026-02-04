@@ -41,7 +41,7 @@ const ApplyJob = () => {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.response?.data?.message || error.message);
     }
     // const data = jobs.filter((job) => job._id === id);
     // if (data.length !== 0) {
@@ -74,7 +74,7 @@ const ApplyJob = () => {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error('Already Applied');
+      toast.error(error.response?.data?.message || error.message);
     }
   };
 
