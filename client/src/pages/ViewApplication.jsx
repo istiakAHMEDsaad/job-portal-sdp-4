@@ -48,7 +48,7 @@ const ViewApplication = () => {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.response?.data?.message || error.message);
     }
   };
 
@@ -67,7 +67,7 @@ const ViewApplication = () => {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.response?.data?.message || error.message);
     }
   };
 

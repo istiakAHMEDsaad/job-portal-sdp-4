@@ -1,14 +1,12 @@
-import mongoose from "mongoose";
-
-// Function to connect the mongoDB database
+import mongoose from 'mongoose';
+import { MONGODB_URI } from './env.js';
 
 const connectDB = async () => {
-  try {
-    await mongoose.connect(`${process.env.MONGODB_URI}/bubt-job-portal`);
-    console.log("MongoDB Connected");
-  } catch (err) {
-    console.error("MongoDB Connection Error:", err.message);
-  }
+  mongoose.connection.on('connected', () =>
+    console.log('Database is connected'),
+  );
+
+  await mongoose.connect(`${MONGODB_URI}/bubt-job-portal`);
 };
 
 export default connectDB;

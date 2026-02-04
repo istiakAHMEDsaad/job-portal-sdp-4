@@ -35,7 +35,7 @@ const AddJob = () => {
         quillRef.current.root.innerHTML = '';
       }
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.response?.data?.message || error.message);
     }
     toast.success('Data added');
   };

@@ -42,7 +42,7 @@ export const AppContextProvider = (props) => {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.response?.data?.message || error.message);
     }
   };
 
@@ -58,7 +58,7 @@ export const AppContextProvider = (props) => {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.response?.data?.message || error.message);
     }
   };
 
@@ -71,13 +71,15 @@ export const AppContextProvider = (props) => {
         headers: { Authorization: `Bearer ${token}` },
       });
 
+      console.log(data);
+
       if (data.success) {
         setUserData(data.user);
       } else {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.response?.data?.message || error.message);
     }
   };
 
@@ -96,7 +98,7 @@ export const AppContextProvider = (props) => {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.response?.data?.message || error.message);
     }
   };
 
@@ -121,7 +123,7 @@ export const AppContextProvider = (props) => {
       fetchUserData();
       fetchUserApplications();
     }
-  }, [user]);
+  }, [isLoaded, user]);
 
   const value = {
     user,
