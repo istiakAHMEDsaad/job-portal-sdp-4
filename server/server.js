@@ -7,7 +7,8 @@ import { PORT } from './config/env.js';
 import connectDB from './config/db.js';
 import * as Sentry from '@sentry/node';
 import { clerkWebhooks } from './controllers/webhooks.js';
-import companyRoutes from './routes/companyRoutes.js'
+import companyRoutes from './routes/companyRoutes.js';
+import jobRoutes from './routes/jobRoutes.js';
 
 const app = express();
 
@@ -34,7 +35,7 @@ app.get('/', (req, res) => {
 
 // Routes
 app.use('/api/company', companyRoutes);
-// app.use('/api/jobs', jobRoutes);
+app.use('/api/jobs', jobRoutes);
 // app.use('/api/users', userRoutes);
 
 // Test error route
