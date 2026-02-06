@@ -19,11 +19,9 @@ import ShowUserProfile from './pages/ShowUserProfile';
 import SingleShareById from './pages/SingleShareById';
 import EditJobExperience from './pages/EditJobExperience';
 import JobPreparation from './pages/JobPreparation';
-import ProtectedRoute from './routes/ProtectedRoute';
-import OthersProtected from './routes/OthersProtected';
 
 function App() {
-  const { showRecruiterLogin } = useContext(AppContext);
+  const { showRecruiterLogin, companyToken } = useContext(AppContext);
 
   return (
     <div>
@@ -45,37 +43,23 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/apply-job/:id' element={<ApplyJob />} />
         <Route path='/applications' element={<Applications />} />
-
-        {/* admin dashboard */}
-        <Route
-          path='/dashboard'
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        >
-          <Route path='add-job' element={<AddJob />} />
-          <Route path='manage-job' element={<ManageJobs />} />
-          <Route path='view-applications' element={<ViewApplication />} />
-        </Route>
-        <Route path='/view-applications/:id' element={<ShowUserProfile />} />
-
-        {/* Portfolio */}
         <Route path='/portfolio' element={<Portfolio />} />
         <Route path='/portfolio/edit-portfolio' element={<EditPortfolio />} />
-
-        {/* Job Experience */}
+        {companyToken ? (
+          <Route path='/dashboard' element={<Dashboard />}>
+            <Route path='add-job' element={<AddJob />} />
+            <Route path='manage-job' element={<ManageJobs />} />
+            <Route path='view-applications' element={<ViewApplication />} />
+          </Route>
+        ) : null}
         <Route path='/share-experience' element={<ShareExperience />} />
         <Route path='/share-experience/:id' element={<SingleShareById />} />
+        <Route path='/view-applications/:id' element={<ShowUserProfile />} />
         <Route
           path='/edit-job-experience/:id'
           element={<EditJobExperience />}
         />
-
-        {/* Job Preparation */}
         <Route path='/job-preparation' element={<JobPreparation />} />
-        <Route path='*' element={<Navigate to='/' />} />
       </Routes>
     </div>
   );
