@@ -59,6 +59,7 @@ function App() {
           <Route path='manage-job' element={<ManageJobs />} />
           <Route path='view-applications' element={<ViewApplication />} />
         </Route>
+        <Route path='/view-applications/:id' element={<ShowUserProfile />} />
 
         {/* Portfolio */}
         <Route path='/portfolio' element={<Portfolio />} />
@@ -71,9 +72,6 @@ function App() {
           path='/edit-job-experience/:id'
           element={<EditJobExperience />}
         />
-
-        {/* User Profile */}
-        <Route path='/view-applications/:id' element={<ShowUserProfile />} />
 
         {/* Job Preparation */}
         <Route path='/job-preparation' element={<JobPreparation />} />

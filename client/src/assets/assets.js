@@ -1,38 +1,38 @@
-import logo from "./logo/logo.svg";
-import search_icon from "./icon/search_icon.svg";
-import company_icon from "./icon/company_icon.svg";
-import microsoft_logo from "./logo/microsoft_logo.svg";
-import walmart_logo from "./logo/walmart_logo.svg";
-import accenture_logo from "./logo/accenture_logo.png";
-import profile_img from "./profile_img.png";
-import app_main_img from "./logo/app_main_img.png";
-import cross_icon from "./icon/cross_icon.svg";
-import location_icon from "./icon/location_icon.svg";
-import money_icon from "./icon/money_icon.svg";
-import suitcase_icon from "./icon/suitcase_icon.svg";
-import person_icon from "./icon/person_icon.svg";
-import upload_area from "./icon/upload_area.svg";
-import resume_selected from "./icon/resume_selected.svg";
-import resume_not_selected from "./icon/resume_not_selected.svg";
-import play_store from "./logo/play_store.svg";
-import app_store from "./logo/app_store.svg";
-import back_arrow_icon from "./icon/back_arrow_icon.svg";
-import left_arrow_icon from "./icon/left_arrow_icon.svg";
-import right_arrow_icon from "./icon/right_arrow_icon.svg";
-import facebook_icon from "./icon/facebook_icon.svg";
-import instagram_icon from "./icon/instagram_icon.svg";
-import twitter_icon from "./icon/twitter_icon.svg";
-import home_icon from "./icon/home_icon.svg";
-import add_icon from "./icon/add_icon.svg";
-import profile_upload_icon from "./icon/profile_upload_icon.svg";
-import person_tick_icon from "./icon/person_tick_icon.svg";
-import resume_download_icon from "./icon/resume_download_icon.svg";
-import delete_icon from "./icon/delete_icon.svg";
-import email_icon from "./icon/email_icon.svg";
-import lock_icon from "./icon/lock_icon.svg";
-import samsung_logo from "./logo/samsung_logo.png";
-import adobe_logo from "./logo/adobe_logo.png";
-import amazon_logo from "./logo/amazon_logo.png";
+import logo from './logo/logo.svg';
+import search_icon from './icon/search_icon.svg';
+import company_icon from './icon/company_icon.svg';
+import microsoft_logo from './logo/microsoft_logo.svg';
+import walmart_logo from './logo/walmart_logo.svg';
+import accenture_logo from './logo/accenture_logo.png';
+import profile_img from './profile_img.png';
+import app_main_img from './logo/app_main_img.png';
+import cross_icon from './icon/cross_icon.svg';
+import location_icon from './icon/location_icon.svg';
+import money_icon from './icon/money_icon.svg';
+import suitcase_icon from './icon/suitcase_icon.svg';
+import person_icon from './icon/person_icon.svg';
+import upload_area from './icon/upload_area.svg';
+import resume_selected from './icon/resume_selected.svg';
+import resume_not_selected from './icon/resume_not_selected.svg';
+import play_store from './logo/play_store.svg';
+import app_store from './logo/app_store.svg';
+import back_arrow_icon from './icon/back_arrow_icon.svg';
+import left_arrow_icon from './icon/left_arrow_icon.svg';
+import right_arrow_icon from './icon/right_arrow_icon.svg';
+import facebook_icon from './icon/facebook_icon.svg';
+import instagram_icon from './icon/instagram_icon.svg';
+import twitter_icon from './icon/twitter_icon.svg';
+import home_icon from './icon/home_icon.svg';
+import add_icon from './icon/add_icon.svg';
+import profile_upload_icon from './icon/profile_upload_icon.svg';
+import person_tick_icon from './icon/person_tick_icon.svg';
+import resume_download_icon from './icon/resume_download_icon.svg';
+import delete_icon from './icon/delete_icon.svg';
+import email_icon from './icon/email_icon.svg';
+import lock_icon from './icon/lock_icon.svg';
+import samsung_logo from './logo/samsung_logo.png';
+import adobe_logo from './logo/adobe_logo.png';
+import amazon_logo from './logo/amazon_logo.png';
 
 export const assets = {
   logo,
@@ -73,58 +73,56 @@ export const assets = {
 };
 
 export const JobCategories = [
-  "Select",
-  "Programming",
-  "Data Science",
-  "Designing",
-  "Networking",
-  "Management",
-  "Marketing",
-  "Cybersecurity",
-  "Others"
+  'Programming',
+  'Data Science',
+  'Designing',
+  'Networking',
+  'Management',
+  'Marketing',
+  'Cybersecurity',
+  'Others',
 ];
 
 export const JobLocations = [
-  "Select",
-  "Mirpur",
-  "Dhanmondi",
-  "Gulshan",
-  "Banani",
-  "Basundhara",
-  "Gazipur",
-  "Uttara",
+  'Mirpur',
+  'Dhanmondi',
+  'Gulshan',
+  'Banani',
+  'Basundhara',
+  'Gazipur',
+  'Uttara',
 ];
 
-export const JobLevel = ["Internship", "Remote", "Part Time", "Full Time"];
+export const JobLevel = ['Internship', 'Remote', 'Part Time', 'Full Time'];
 
 // Sample data for Manage Jobs Page
 export const manageJobsData = [
   {
     _id: 1,
-    title: "Full Stack Developer",
+    title: 'Full Stack Developer',
     date: 1729102298497,
-    location: "Bangalore",
+    location: 'Bangalore',
     applicants: 20,
   },
   {
     _id: 2,
-    title: "Data Scientist",
+    title: 'Data Scientist',
     date: 1729102298497,
-    location: "San Francisco",
+    location: 'San Francisco',
     applicants: 15,
   },
   {
     _id: 3,
-    title: "Marketing Manager",
+    title: 'Marketing Manager',
     date: 1729102298497,
-    location: "London",
+    location: 'London',
     applicants: 2,
   },
   {
     _id: 4,
-    title: "UI/UX Designer",
+    title: 'UI/UX Designer',
     date: 1729102298497,
-    location: "Dubai",
+    location: 'Dubai',
     applicants: 25,
   },
 ];
@@ -132,43 +130,43 @@ export const manageJobsData = [
 // Sample data for Profile Page
 export const jobsApplied = [
   {
-    company: "Amazon",
-    title: "Full Stack Developer",
-    location: "Bangalore",
-    date: "22 Aug, 2024",
-    status: "Pending",
+    company: 'Amazon',
+    title: 'Full Stack Developer',
+    location: 'Bangalore',
+    date: '22 Aug, 2024',
+    status: 'Pending',
     logo: company_icon,
   },
   {
-    company: "Meta",
-    title: "Data Scientist",
-    location: "San Francisco",
-    date: "22 Aug, 2024",
-    status: "Rejected",
+    company: 'Meta',
+    title: 'Data Scientist',
+    location: 'San Francisco',
+    date: '22 Aug, 2024',
+    status: 'Rejected',
     logo: company_icon,
   },
   {
-    company: "Google",
-    title: "Marketing Manager",
-    location: "London",
-    date: "25 Sep, 2024",
-    status: "Accepted",
+    company: 'Google',
+    title: 'Marketing Manager',
+    location: 'London',
+    date: '25 Sep, 2024',
+    status: 'Accepted',
     logo: company_icon,
   },
   {
-    company: "Qualcomm",
-    title: "UI/UX Designer",
-    location: "Dubai",
-    date: "15 Oct, 2024",
-    status: "Pending",
+    company: 'Qualcomm',
+    title: 'UI/UX Designer',
+    location: 'Dubai',
+    date: '15 Oct, 2024',
+    status: 'Pending',
     logo: company_icon,
   },
   {
-    company: "Microsoft",
-    title: "Full Stack Developer",
-    location: "Hyderabad",
-    date: "25 Sep, 2024",
-    status: "Accepted",
+    company: 'Microsoft',
+    title: 'Full Stack Developer',
+    location: 'Hyderabad',
+    date: '25 Sep, 2024',
+    status: 'Accepted',
     logo: company_icon,
   },
 ];
@@ -176,65 +174,65 @@ export const jobsApplied = [
 export const viewApplicationsPageData = [
   {
     _id: 1,
-    name: "Richard Sanford",
-    jobTitle: "Full Stack Developer",
-    location: "Bangalore",
+    name: 'Richard Sanford',
+    jobTitle: 'Full Stack Developer',
+    location: 'Bangalore',
     imgSrc: profile_img,
   },
   {
     _id: 2,
-    name: "Enrique Murphy",
-    jobTitle: "Data Scientist",
-    location: "San Francisco",
+    name: 'Enrique Murphy',
+    jobTitle: 'Data Scientist',
+    location: 'San Francisco',
     imgSrc: profile_img,
   },
   {
     _id: 3,
-    name: "Alison Powell",
-    jobTitle: "Marketing Manager",
-    location: "London",
+    name: 'Alison Powell',
+    jobTitle: 'Marketing Manager',
+    location: 'London',
     imgSrc: profile_img,
   },
   {
     _id: 4,
-    name: "Richard Sanford",
-    jobTitle: "UI/UX Designer",
-    location: "Dubai",
+    name: 'Richard Sanford',
+    jobTitle: 'UI/UX Designer',
+    location: 'Dubai',
     imgSrc: profile_img,
   },
   {
     _id: 5,
-    name: "Enrique Murphy",
-    jobTitle: "Full Stack Developer",
-    location: "Hyderabad",
+    name: 'Enrique Murphy',
+    jobTitle: 'Full Stack Developer',
+    location: 'Hyderabad',
     imgSrc: profile_img,
   },
   {
     _id: 6,
-    name: "Alison Powell",
-    jobTitle: "Data Scientist",
-    location: "New Delhi",
+    name: 'Alison Powell',
+    jobTitle: 'Data Scientist',
+    location: 'New Delhi',
     imgSrc: profile_img,
   },
   {
     _id: 7,
-    name: "Richard Sanford",
-    jobTitle: "Marketing Manager",
-    location: "Chennai",
+    name: 'Richard Sanford',
+    jobTitle: 'Marketing Manager',
+    location: 'Chennai',
     imgSrc: profile_img,
   },
 ];
 
 export const jobsData = [
   {
-    _id: "1",
-    title: "Full Stack Developer",
-    location: "California",
-    level: "Remote",
+    _id: '1',
+    title: 'Full Stack Developer',
+    location: 'California',
+    level: 'Remote',
     companyId: {
-      _id: "670e4d25ca9fda8f1bf359b9",
-      name: "Slack",
-      email: "slack@demo.com",
+      _id: '670e4d25ca9fda8f1bf359b9',
+      name: 'Slack',
+      email: 'slack@demo.com',
       image: company_icon,
     },
     description: `
@@ -257,17 +255,17 @@ export const jobsData = [
         </ol>`,
     salary: 82000,
     date: 1729681667114,
-    category: "Programming",
+    category: 'Programming',
   },
   {
-    _id: "2",
-    title: "Data Scientist",
-    location: "New York",
-    level: "Full Time",
+    _id: '2',
+    title: 'Data Scientist',
+    location: 'New York',
+    level: 'Full Time',
     companyId: {
-      _id: "670e4d25ca9fda8f1bf359b9",
-      name: "Slack",
-      email: "slack@demo.com",
+      _id: '670e4d25ca9fda8f1bf359b9',
+      name: 'Slack',
+      email: 'slack@demo.com',
       image: company_icon,
     },
     description: `
@@ -290,17 +288,17 @@ export const jobsData = [
         </ol>`,
     salary: 72000,
     date: 1729681667114,
-    category: "Data Science",
+    category: 'Data Science',
   },
   {
-    _id: "3",
-    title: "UI/UX Designer",
-    location: "Bangalore",
-    level: "Internship",
+    _id: '3',
+    title: 'UI/UX Designer',
+    location: 'Bangalore',
+    level: 'Internship',
     companyId: {
-      _id: "670e4d25ca9fda8f1bf359b9",
-      name: "Slack",
-      email: "slack@demo.com",
+      _id: '670e4d25ca9fda8f1bf359b9',
+      name: 'Slack',
+      email: 'slack@demo.com',
       image: company_icon,
     },
     description: `
@@ -323,17 +321,17 @@ export const jobsData = [
         </ol>`,
     salary: 61000,
     date: 1729681667114,
-    category: "Designing",
+    category: 'Designing',
   },
   {
-    _id: "4",
-    title: "DevOps Engineer",
-    location: "Washington",
-    level: "Senior Level",
+    _id: '4',
+    title: 'DevOps Engineer',
+    location: 'Washington',
+    level: 'Senior Level',
     companyId: {
-      _id: "670e4d25ca9fda8f1bf359b9",
-      name: "Slack",
-      email: "slack@demo.com",
+      _id: '670e4d25ca9fda8f1bf359b9',
+      name: 'Slack',
+      email: 'slack@demo.com',
       image: company_icon,
     },
     description: `
@@ -356,17 +354,17 @@ export const jobsData = [
         </ol>`,
     salary: 53000,
     date: 1729681667114,
-    category: "Programming",
+    category: 'Programming',
   },
   {
-    _id: "5",
-    title: "Software Engineer",
-    location: "Hyderabad",
-    level: "Intermediate Level",
+    _id: '5',
+    title: 'Software Engineer',
+    location: 'Hyderabad',
+    level: 'Intermediate Level',
     companyId: {
-      _id: "670e4d25ca9fda8f1bf359b9",
-      name: "Slack",
-      email: "slack@demo.com",
+      _id: '670e4d25ca9fda8f1bf359b9',
+      name: 'Slack',
+      email: 'slack@demo.com',
       image: company_icon,
     },
     description: `
@@ -389,17 +387,17 @@ export const jobsData = [
         </ol>`,
     salary: 91000,
     date: 1729681667114,
-    category: "Programming",
+    category: 'Programming',
   },
   {
-    _id: "6",
-    title: "Network Engineer",
-    location: "Bangalore",
-    level: "Senior Level",
+    _id: '6',
+    title: 'Network Engineer',
+    location: 'Bangalore',
+    level: 'Senior Level',
     companyId: {
-      _id: "670e4d25ca9fda8f1bf359b9",
-      name: "Slack",
-      email: "slack@demo.com",
+      _id: '670e4d25ca9fda8f1bf359b9',
+      name: 'Slack',
+      email: 'slack@demo.com',
       image: company_icon,
     },
     description: `
@@ -422,17 +420,17 @@ export const jobsData = [
         </ol>`,
     salary: 77000,
     date: 1729681667114,
-    category: "Networking",
+    category: 'Networking',
   },
   {
-    _id: "7",
-    title: "Project Manager",
-    location: "Bangalore",
-    level: "Senior Level",
+    _id: '7',
+    title: 'Project Manager',
+    location: 'Bangalore',
+    level: 'Senior Level',
     companyId: {
-      _id: "670e4d25ca9fda8f1bf359b9",
-      name: "Slack",
-      email: "slack@demo.com",
+      _id: '670e4d25ca9fda8f1bf359b9',
+      name: 'Slack',
+      email: 'slack@demo.com',
       image: company_icon,
     },
     description: `
@@ -455,17 +453,17 @@ export const jobsData = [
         </ol>`,
     salary: 60000,
     date: 1729681667114,
-    category: "Management",
+    category: 'Management',
   },
   {
-    _id: "8",
-    title: "Mobile App Developer",
-    location: "Hyderabad",
-    level: "Intermediate Level",
+    _id: '8',
+    title: 'Mobile App Developer',
+    location: 'Hyderabad',
+    level: 'Intermediate Level',
     companyId: {
-      _id: "670e4d25ca9fda8f1bf359b9",
-      name: "Slack",
-      email: "slack@demo.com",
+      _id: '670e4d25ca9fda8f1bf359b9',
+      name: 'Slack',
+      email: 'slack@demo.com',
       image: company_icon,
     },
     description: `
@@ -488,17 +486,17 @@ export const jobsData = [
         </ol>`,
     salary: 112000,
     date: 1729681667114,
-    category: "Programming",
+    category: 'Programming',
   },
   {
-    _id: "9",
-    title: "Cloud Architect",
-    location: "Hyderabad",
-    level: "Senior Level",
+    _id: '9',
+    title: 'Cloud Architect',
+    location: 'Hyderabad',
+    level: 'Senior Level',
     companyId: {
-      _id: "670e4d25ca9fda8f1bf359b9",
-      name: "Slack",
-      email: "slack@demo.com",
+      _id: '670e4d25ca9fda8f1bf359b9',
+      name: 'Slack',
+      email: 'slack@demo.com',
       image: company_icon,
     },
     description: `
@@ -521,17 +519,17 @@ export const jobsData = [
         </ol>`,
     salary: 96000,
     date: 1729681667114,
-    category: "Programming",
+    category: 'Programming',
   },
   {
-    _id: "10",
-    title: "Technical Writer",
-    location: "Mumbai",
-    level: "Intermediate Level",
+    _id: '10',
+    title: 'Technical Writer',
+    location: 'Mumbai',
+    level: 'Intermediate Level',
     companyId: {
-      _id: "670e4d25ca9fda8f1bf359b9",
-      name: "Slack",
-      email: "slack@demo.com",
+      _id: '670e4d25ca9fda8f1bf359b9',
+      name: 'Slack',
+      email: 'slack@demo.com',
       image: company_icon,
     },
     description: `
@@ -554,17 +552,17 @@ export const jobsData = [
         </ol>`,
     salary: 72000,
     date: 1729681667114,
-    category: "Marketing",
+    category: 'Marketing',
   },
   {
-    _id: "11",
-    title: "Cybersecurity Analyst",
-    location: "Mumbai",
-    level: "Intermediate Level",
+    _id: '11',
+    title: 'Cybersecurity Analyst',
+    location: 'Mumbai',
+    level: 'Intermediate Level',
     companyId: {
-      _id: "670e4d25ca9fda8f1bf359b9",
-      name: "Slack",
-      email: "slack@demo.com",
+      _id: '670e4d25ca9fda8f1bf359b9',
+      name: 'Slack',
+      email: 'slack@demo.com',
       image: company_icon,
     },
     description: `
@@ -587,17 +585,17 @@ export const jobsData = [
         </ol>`,
     salary: 62000,
     date: 1729681667114,
-    category: "Cybersecurity",
+    category: 'Cybersecurity',
   },
   {
-    _id: "12",
-    title: "Business Analyst",
-    location: "Mumbai",
-    level: "Intermediate Level",
+    _id: '12',
+    title: 'Business Analyst',
+    location: 'Mumbai',
+    level: 'Intermediate Level',
     companyId: {
-      _id: "670e4d25ca9fda8f1bf359b9",
-      name: "Slack",
-      email: "slack@demo.com",
+      _id: '670e4d25ca9fda8f1bf359b9',
+      name: 'Slack',
+      email: 'slack@demo.com',
       image: company_icon,
     },
     description: `
@@ -620,17 +618,17 @@ export const jobsData = [
         </ol>`,
     salary: 68000,
     date: 1729681667114,
-    category: "Management",
+    category: 'Management',
   },
   {
-    _id: "13",
-    title: "Marketing Specialist",
-    location: "Chennai",
-    level: "Beginner Level",
+    _id: '13',
+    title: 'Marketing Specialist',
+    location: 'Chennai',
+    level: 'Beginner Level',
     companyId: {
-      _id: "670e4d25ca9fda8f1bf359b9",
-      name: "Slack",
-      email: "slack@demo.com",
+      _id: '670e4d25ca9fda8f1bf359b9',
+      name: 'Slack',
+      email: 'slack@demo.com',
       image: company_icon,
     },
     description: `
@@ -653,17 +651,17 @@ export const jobsData = [
         </ol>`,
     salary: 77000,
     date: 1729681667114,
-    category: "Marketing",
+    category: 'Marketing',
   },
   {
-    _id: "14",
-    title: "Data Scientist",
-    location: "California",
-    level: "Senior Level",
+    _id: '14',
+    title: 'Data Scientist',
+    location: 'California',
+    level: 'Senior Level',
     companyId: {
-      _id: "670e4d25ca9fda8f1bf359b9",
-      name: "Slack",
-      email: "slack@demo.com",
+      _id: '670e4d25ca9fda8f1bf359b9',
+      name: 'Slack',
+      email: 'slack@demo.com',
       image: company_icon,
     },
     description: `
@@ -686,17 +684,17 @@ export const jobsData = [
         </ol>`,
     salary: 65000,
     date: 1729681667114,
-    category: "Data Science",
+    category: 'Data Science',
   },
   {
-    _id: "15",
-    title: "UX/UI Designer",
-    location: "Hyderabad",
-    level: "Intermediate Level",
+    _id: '15',
+    title: 'UX/UI Designer',
+    location: 'Hyderabad',
+    level: 'Intermediate Level',
     companyId: {
-      _id: "670e4d25ca9fda8f1bf359b9",
-      name: "Slack",
-      email: "slack@demo.com",
+      _id: '670e4d25ca9fda8f1bf359b9',
+      name: 'Slack',
+      email: 'slack@demo.com',
       image: company_icon,
     },
     description: `
@@ -719,17 +717,17 @@ export const jobsData = [
         </ol>`,
     salary: 64000,
     date: 1729681667114,
-    category: "Design",
+    category: 'Design',
   },
   {
-    _id: "16",
-    title: "DevOps Engineer",
-    location: "Bangalore",
-    level: "Senior Level",
+    _id: '16',
+    title: 'DevOps Engineer',
+    location: 'Bangalore',
+    level: 'Senior Level',
     companyId: {
-      _id: "670e4d25ca9fda8f1bf359b9",
-      name: "Slack",
-      email: "slack@demo.com",
+      _id: '670e4d25ca9fda8f1bf359b9',
+      name: 'Slack',
+      email: 'slack@demo.com',
       image: company_icon,
     },
     description: `
@@ -752,17 +750,17 @@ export const jobsData = [
         </ol>`,
     salary: 74000,
     date: 1729681667114,
-    category: "Programming",
+    category: 'Programming',
   },
   {
-    _id: "17",
-    title: "Sales Manager",
-    location: "New York",
-    level: "Senior Level",
+    _id: '17',
+    title: 'Sales Manager',
+    location: 'New York',
+    level: 'Senior Level',
     companyId: {
-      _id: "670e4d25ca9fda8f1bf359b9",
-      name: "Slack",
-      email: "slack@demo.com",
+      _id: '670e4d25ca9fda8f1bf359b9',
+      name: 'Slack',
+      email: 'slack@demo.com',
       image: company_icon,
     },
     description: `
@@ -785,17 +783,17 @@ export const jobsData = [
         </ol>`,
     salary: 59000,
     date: 1729681667114,
-    category: "Marketing",
+    category: 'Marketing',
   },
   {
-    _id: "18",
-    title: "Human Resources Specialist",
-    location: "Washington",
-    level: "Intermediate Level",
+    _id: '18',
+    title: 'Human Resources Specialist',
+    location: 'Washington',
+    level: 'Intermediate Level',
     companyId: {
-      _id: "670e4d25ca9fda8f1bf359b9",
-      name: "Slack",
-      email: "slack@demo.com",
+      _id: '670e4d25ca9fda8f1bf359b9',
+      name: 'Slack',
+      email: 'slack@demo.com',
       image: company_icon,
     },
     description: `
@@ -818,17 +816,17 @@ export const jobsData = [
         </ol>`,
     salary: 89000,
     date: 1729681667114,
-    category: "Management",
+    category: 'Management',
   },
   {
-    _id: "19",
-    title: "Content Marketing Manager",
-    location: "Mumbai",
-    level: "Senior Level",
+    _id: '19',
+    title: 'Content Marketing Manager',
+    location: 'Mumbai',
+    level: 'Senior Level',
     companyId: {
-      _id: "670e4d25ca9fda8f1bf359b9",
-      name: "Slack",
-      email: "slack@demo.com",
+      _id: '670e4d25ca9fda8f1bf359b9',
+      name: 'Slack',
+      email: 'slack@demo.com',
       image: company_icon,
     },
     description: `
@@ -851,17 +849,17 @@ export const jobsData = [
         </ol>`,
     salary: 99000,
     date: 1729681667114,
-    category: "Marketing",
+    category: 'Marketing',
   },
   {
-    _id: "20",
-    title: "Graphic Designer",
-    location: "Chennai",
-    level: "Intermediate Level",
+    _id: '20',
+    title: 'Graphic Designer',
+    location: 'Chennai',
+    level: 'Intermediate Level',
     companyId: {
-      _id: "670e4d25ca9fda8f1bf359b9",
-      name: "Slack",
-      email: "slack@demo.com",
+      _id: '670e4d25ca9fda8f1bf359b9',
+      name: 'Slack',
+      email: 'slack@demo.com',
       image: company_icon,
     },
     description: `
@@ -884,17 +882,17 @@ export const jobsData = [
         </ol>`,
     salary: 91000,
     date: 1729681667114,
-    category: "Design",
+    category: 'Design',
   },
   {
-    _id: "21",
-    title: "Software Tester",
-    location: "Chennai",
-    level: "Intermediate Level",
+    _id: '21',
+    title: 'Software Tester',
+    location: 'Chennai',
+    level: 'Intermediate Level',
     companyId: {
-      _id: "670e4d25ca9fda8f1bf359b9",
-      name: "Slack",
-      email: "slack@demo.com",
+      _id: '670e4d25ca9fda8f1bf359b9',
+      name: 'Slack',
+      email: 'slack@demo.com',
       image: company_icon,
     },
     description: `
@@ -917,17 +915,17 @@ export const jobsData = [
         </ol>`,
     salary: 123000,
     date: 1729681667114,
-    category: "Programming",
+    category: 'Programming',
   },
   {
-    _id: "22",
-    title: "Network Security Engineer",
-    location: "Bangalore",
-    level: "Senior Level",
+    _id: '22',
+    title: 'Network Security Engineer',
+    location: 'Bangalore',
+    level: 'Senior Level',
     companyId: {
-      _id: "670e4d25ca9fda8f1bf359b9",
-      name: "Slack",
-      email: "slack@demo.com",
+      _id: '670e4d25ca9fda8f1bf359b9',
+      name: 'Slack',
+      email: 'slack@demo.com',
       image: company_icon,
     },
     description: `
@@ -950,17 +948,17 @@ export const jobsData = [
         </ol>`,
     salary: 87000,
     date: 1729681667114,
-    category: "Cybersecurity",
+    category: 'Cybersecurity',
   },
   {
-    _id: "23",
-    title: "Cloud Engineer",
-    location: "Hyderabad",
-    level: "Internship",
+    _id: '23',
+    title: 'Cloud Engineer',
+    location: 'Hyderabad',
+    level: 'Internship',
     companyId: {
-      _id: "670e4d25ca9fda8f1bf359b9",
-      name: "Slack",
-      email: "slack@demo.com",
+      _id: '670e4d25ca9fda8f1bf359b9',
+      name: 'Slack',
+      email: 'slack@demo.com',
       image: company_icon,
     },
     description: `
@@ -983,90 +981,90 @@ export const jobsData = [
         </ol>`,
     salary: 102000,
     date: 1729681667114,
-    category: "Programming",
+    category: 'Programming',
   },
 ];
 
 export const portFolioData = [
   {
-    _id: "1",
-    name: "Dummy User",
+    _id: '1',
+    name: 'Dummy User',
     image: profile_img,
-    email: "dummy@gmail.com",
-    mobile: "+1 (828) 676-3121",
-    address: "dummy area",
+    email: 'dummy@gmail.com',
+    mobile: '+1 (828) 676-3121',
+    address: 'dummy area',
     about:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, expedita atque? Doloremque ipsam rem debitis, assumenda temporibus iusto ea doloribus?",
-    education: "bsc in cse",
-    skill: ["html", "css", "python", "c", "c++"],
-    experience: "internship on keya cosmetics",
-    objective: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, expedita atque? Doloremque ipsam rem debitis, assumenda temporibus iusto ea doloribus?',
+    education: 'bsc in cse',
+    skill: ['html', 'css', 'python', 'c', 'c++'],
+    experience: 'internship on keya cosmetics',
+    objective: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
   },
 ];
 
 export const experiences = [
   {
     id: 1,
-    name: "Ava Thompson",
-    jobTitle: "Frontend Developer",
-    company: "TechNova",
+    name: 'Ava Thompson',
+    jobTitle: 'Frontend Developer',
+    company: 'TechNova',
     experience:
-      "Working at TechNova improved my React and Tailwind CSS skills drastically. Amazing team culture!",
+      'Working at TechNova improved my React and Tailwind CSS skills drastically. Amazing team culture!',
   },
   {
     id: 2,
-    name: "Liam Parker",
-    jobTitle: "Backend Engineer",
-    company: "CloudWorks",
+    name: 'Liam Parker',
+    jobTitle: 'Backend Engineer',
+    company: 'CloudWorks',
     experience:
-      "Learned so much about Node.js and microservices. Great mentors and work-life balance.",
+      'Learned so much about Node.js and microservices. Great mentors and work-life balance.',
   },
   {
     id: 3,
-    name: "Sophia Lee",
-    jobTitle: "UI/UX Designer",
-    company: "DesignHub",
+    name: 'Sophia Lee',
+    jobTitle: 'UI/UX Designer',
+    company: 'DesignHub',
     experience:
-      "Collaborating with devs to bring ideas to life was fun. Learned Figma to React handoff process.",
+      'Collaborating with devs to bring ideas to life was fun. Learned Figma to React handoff process.',
   },
   {
     id: 4,
-    name: "Ethan Patel",
-    jobTitle: "Data Analyst",
-    company: "InsightIQ",
+    name: 'Ethan Patel',
+    jobTitle: 'Data Analyst',
+    company: 'InsightIQ',
     experience:
-      "Dived deep into SQL and visualization tools. Enhanced problem-solving skills daily.",
+      'Dived deep into SQL and visualization tools. Enhanced problem-solving skills daily.',
   },
   {
     id: 5,
-    name: "Mia Johnson",
-    jobTitle: "Mobile Developer",
-    company: "AppSphere",
+    name: 'Mia Johnson',
+    jobTitle: 'Mobile Developer',
+    company: 'AppSphere',
     experience:
-      "Building cross-platform apps using React Native was challenging but rewarding.",
+      'Building cross-platform apps using React Native was challenging but rewarding.',
   },
   {
     id: 6,
-    name: "Noah Davis",
-    jobTitle: "DevOps Engineer",
-    company: "Cloudify",
+    name: 'Noah Davis',
+    jobTitle: 'DevOps Engineer',
+    company: 'Cloudify',
     experience:
-      "Automated deployment pipelines using Docker and CI/CD. Great hands-on experience.",
+      'Automated deployment pipelines using Docker and CI/CD. Great hands-on experience.',
   },
   {
     id: 7,
-    name: "Emma Brown",
-    jobTitle: "QA Tester",
-    company: "SoftSure",
+    name: 'Emma Brown',
+    jobTitle: 'QA Tester',
+    company: 'SoftSure',
     experience:
-      "Testing real-world products improved my debugging and documentation skills.",
+      'Testing real-world products improved my debugging and documentation skills.',
   },
   {
     id: 8,
-    name: "Lucas Wright",
-    jobTitle: "Full Stack Developer",
-    company: "WebCore",
+    name: 'Lucas Wright',
+    jobTitle: 'Full Stack Developer',
+    company: 'WebCore',
     experience:
-      "Balancing front-end and back-end tasks gave me a full project perspective.",
+      'Balancing front-end and back-end tasks gave me a full project perspective.',
   },
 ];

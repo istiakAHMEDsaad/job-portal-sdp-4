@@ -3,7 +3,7 @@ import Company from '../models/Company.js';
 import { JWT_SECRET } from '../config/env.js';
 
 export const protectCompany = async (req, res, next) => {
-  const token = req.headers.token;
+  const token = await req.headers.token;
 
   if (!token) {
     return res

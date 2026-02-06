@@ -1,4 +1,114 @@
-### Software Development Project o4 (_Job Portal_)
+# 🚀 Bubt Job Portal: Full-Stack Job Portal & Experience Suite
+
+CareerHub Pro is a high-performance, full-stack job portal built with the MERN stack, integrated with Clerk Auth, and secured with Arcjet. Beyond standard job applications, this platform features an Expert Experience Feed for senior developers and a Professional Resume Builder with instant PDF downloads.
+
+![Application Screenshot](./screenshot.PNG)
+
+
+---
+
+## ✨ Key Features
+
+### 🏢 For Recruiters
+* **Company Dashboard:** Manage job listings and track applications.
+* **Applicant Tracking:** Review candidate profiles and change application statuses (Pending, Accepted, Rejected).
+* **Security:** Rate-limited job posting to prevent spam using Arcjet.
+
+### 🎓 For Job Seekers
+* **Smart Search:** Filter jobs by category, location, and salary.
+* **User Profiles:** Build a comprehensive professional portfolio.
+* **Resume Builder:** Generate and download a print-ready PDF resume directly from your profile data.
+* **Experience Feed:** Read and share interview experiences and career tips from Senior Developers.
+
+### 🛡️ Technical Excellence
+* **Arcjet Integration:** DDoS protection and intelligent rate limiting.
+* **Authentication:** Multi-factor authentication via Clerk.
+* **Cloudinary:** Optimized image hosting for profiles and company logos.
+* **Sentry:** Real-time error tracking and performance monitoring.
+
+---
+
+## 🛠️ Tech Stack
+
+**Frontend:**
+* React.js (Vite)
+* Tailwind CSS (Modern UI/UX)
+* Clerk (Authentication)
+* Lucide React (Icons)
+* Axios & React-Toastify
+
+**Backend:**
+* Node.js & Express.js
+* MongoDB (Mongoose)
+* Arcjet (Security & Rate Limiting)
+* Cloudinary (Image Management)
+* Sentry (Monitoring)
+
+---
+
+## 🛡️ Security Implementation
+This project uses Arcjet to ensure high availability and security:
+
+- Rate Limiting: Prevents API abuse.
+
+- Bot Detection: Blocks malicious scrapers.
+
+- Shield: Protects against SQL injection and common exploits.
+
+## ⚙️ Environment Variables
+
+To run this project, you will need to add the following environment variables to your `.env` files.
+
+### Backend (`/server/.env`)
+```env
+PORT=5000
+JWT_SECRET=your_jwt_secret
+MONGODB_URI=your_mongodb_connection_string
+SENTRY_DSN=your_sentry_dsn
+
+CLOUDINARY_NAME=your_name
+CLOUDINARY_API_KEY=your_key
+CLOUDINARY_SECRET_KEY=your_secret
+
+CLERK_WEBHOOK_SECRET=your_webhook_secret
+CLERK_PUBLISHABLE_KEY=your_clerk_pub_key
+CLERK_SECRET_KEY=your_clerk_secret_key
+
+ARCJET_KEY=your_arcjet_key
+```
+### Frontend (`/client/.env`)
+```
+VITE_CLERK_PUBLISHABLE_KEY=your_clerk_pub_key
+VITE_BACKEND_URL=http://localhost:5000
+```
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
+```
+git clone https://github.com/istiakAHMEDsaad/job-portal-sdp-4
+```
+
+### 2. Install Dependencies
+```
+# Install backend dependencies
+cd server
+npm install
+
+# Install frontend dependencies
+cd client
+npm install
+```
+
+### 3. Run the Project
+```
+# Run backend (from /server)
+npm run server
+
+# Run frontend (from /client)
+npm run dev
+```
+
 
 ## 1. How to contribute :heart_decoration:?
 

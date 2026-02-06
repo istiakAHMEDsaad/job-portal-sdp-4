@@ -87,6 +87,29 @@ export const getUserJobApplications = async (req, res) => {
   }
 };
 
+// Get user info by id in admin pannel
+export const getPortfolioByUserId = async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    const portfolio = await Portfolio.findOne({ userId });
+
+    if (!portfolio) {
+      return res.status(404).json({
+        success: false,
+        message: 'User info not found',
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      portfolio,
+    });
+  } catch (error) {
+    return res.status(400).json({ success: false, message: error.message });
+  }
+};
+
 // Update user profile (resume)
 export const updateUserResume = async (req, res) => {
   try {
@@ -245,6 +268,46 @@ export const getJobExperienceById = async (req, res) => {
   }
 };
 
+// Edit job experience
+export const editJobExperience = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { description } = req.body;
+
+    if (!description) {
+      return res.status(400).json({
+        success: false,
+        message: 'Description is required',
+      });
+    }
+
+    const updated = await JobExperience.findByIdAndUpdate(
+      id,
+      { description },
+      { new: true },
+    );
+
+    if (!updated) {
+      return res.status(404).json({
+        success: false,
+        message: 'Experience not found',
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: 'Post updated successfully',
+      data: updated,
+    });
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).json({
+      success: false,
+      message: 'Server Error',
+    });
+  }
+};
+
 // Delete job experience
 export const deleteJobExperience = async (req, res) => {
   try {
@@ -259,9 +322,12 @@ export const deleteJobExperience = async (req, res) => {
       });
     }
 
-    res.status(200).json({ success: true, message: 'Post have been deleted!' });
+    return res
+      .status(200)
+      .json({ success: true, message: 'Post have been deleted!' });
   } catch (error) {
-    res.status(400).json({
+    console.log(error.message);
+    return res.status(400).json({
       success: false,
       message: error.message,
     });
