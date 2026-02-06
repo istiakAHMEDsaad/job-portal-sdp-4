@@ -45,10 +45,8 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/apply-job/:id' element={<ApplyJob />} />
         <Route path='/applications' element={<Applications />} />
-        <Route path='/portfolio' element={<Portfolio />} />
-        <Route path='/portfolio/edit-portfolio' element={<EditPortfolio />} />
 
-        {/* dashboard */}
+        {/* admin dashboard */}
         <Route
           path='/dashboard'
           element={
@@ -62,13 +60,22 @@ function App() {
           <Route path='view-applications' element={<ViewApplication />} />
         </Route>
 
+        {/* Portfolio */}
+        <Route path='/portfolio' element={<Portfolio />} />
+        <Route path='/portfolio/edit-portfolio' element={<EditPortfolio />} />
+
+        {/* Job Experience */}
         <Route path='/share-experience' element={<ShareExperience />} />
         <Route path='/share-experience/:id' element={<SingleShareById />} />
-        <Route path='/view-applications/:id' element={<ShowUserProfile />} />
         <Route
           path='/edit-job-experience/:id'
           element={<EditJobExperience />}
         />
+
+        {/* User Profile */}
+        <Route path='/view-applications/:id' element={<ShowUserProfile />} />
+
+        {/* Job Preparation */}
         <Route path='/job-preparation' element={<JobPreparation />} />
         <Route path='*' element={<Navigate to='/' />} />
       </Routes>
