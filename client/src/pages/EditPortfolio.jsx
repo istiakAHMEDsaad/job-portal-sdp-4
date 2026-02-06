@@ -1,21 +1,25 @@
-import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { useAuth } from '@clerk/clerk-react';
 import { toast } from 'react-toastify';
-import { Link, useNavigate } from 'react-router-dom';
 
 const EditPortfolio = () => {
-  const { userData, backendUrl } = useContext(AppContext);
-  const { email, image, name } = userData || {};
-  const { getToken } = useAuth();
-
   const navigate = useNavigate();
+  const { userData, backendUrl, portfolioData, fetchPortfolio } =
+    useContext(AppContext);
+
+  const { email, image, name } = userData || {};
+
+  const { about, address, education, experience, objective, phone, skill } =
+    portfolioData || {};
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     const form = new FormData(event.target);
     const phone = form.get('phone');
     const address = form.get('address');
@@ -46,29 +50,24 @@ const EditPortfolio = () => {
     };
 
     try {
-      const token = await getToken();
-      const { data } = await axios.post(
-        `${backendUrl}/api/users/post-user-info`,
-        finalData,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      await axios.put(`${backendUrl}/api/users/portfolio`, finalData, {
+        withCredentials: true,
+      });
 
-      if (data.success) {
-        toast.success(data.message);
-      } else {
-        toast.error(data.message);
-      }
+      fetchPortfolio();
+
+      toast.success('Portfolio Updated');
+      navigate('/portfolio');
     } catch (error) {
-      toast.error(error.response?.data?.message || error.message);
+      toast.error(error.response?.data?.message || 'Something went wrong');
     }
-
-    navigate('/portfolio');
   };
 
   return (
     <div>
       <Navbar />
       <div>
+        {/* back button */}
         <div className='ml-4 mt-6 max-sm:block lg:hidden'>
           <Link
             className='px-4 py-2 rounded bg-neutral-950 hover:bg-neutral-900 transition-colors cursor-pointer text-gray-200 mb-8'
@@ -90,7 +89,7 @@ const EditPortfolio = () => {
           <div className='md:col-span-2'>
             <label
               className='block text-sm font-medium text-gray-900'
-              for='name'
+              htmlFor='name'
             >
               Name
             </label>
@@ -107,7 +106,7 @@ const EditPortfolio = () => {
           </div>
 
           {/* image */}
-          <label htmlFor='image'>Image</label>
+          <label>Image</label>
           <div className='md:col-span-2'>
             <div
               id='image'
@@ -121,7 +120,7 @@ const EditPortfolio = () => {
           <div>
             <label
               className='block text-sm font-medium text-gray-900'
-              for='email'
+              htmlFor='email'
             >
               Email
             </label>
@@ -132,7 +131,7 @@ const EditPortfolio = () => {
               name='email'
               type='email'
               placeholder='Your email'
-              value={email}
+              defaultValue={email}
               disabled
             />
           </div>
@@ -141,7 +140,7 @@ const EditPortfolio = () => {
           <div>
             <label
               className='block text-sm font-medium text-gray-900'
-              for='phone'
+              htmlFor='phone'
             >
               Phone
             </label>
@@ -152,6 +151,7 @@ const EditPortfolio = () => {
               name='phone'
               type='tel'
               placeholder='Your phone'
+              defaultValue={phone}
             />
           </div>
 
@@ -159,7 +159,7 @@ const EditPortfolio = () => {
           <div className='md:col-span-2'>
             <label
               className='block text-sm font-medium text-gray-900'
-              for='address'
+              htmlFor='address'
             >
               Home Address
             </label>
@@ -170,6 +170,7 @@ const EditPortfolio = () => {
               name='address'
               type='text'
               placeholder='Your home address'
+              defaultValue={address}
             />
           </div>
 
@@ -177,7 +178,7 @@ const EditPortfolio = () => {
           <div className='md:col-span-2'>
             <label
               className='block text-sm font-medium text-gray-900'
-              for='education'
+              htmlFor='education'
             >
               Education
             </label>
@@ -188,6 +189,7 @@ const EditPortfolio = () => {
               name='education'
               type='text'
               placeholder='Please enter your degree'
+              defaultValue={education}
             />
           </div>
 
@@ -195,7 +197,7 @@ const EditPortfolio = () => {
           <div className='md:col-span-2'>
             <label
               className='block text-sm font-medium text-gray-900'
-              for='programmingLanguage'
+              htmlFor='programmingLanguage'
             >
               Programming Language
             </label>
@@ -206,6 +208,7 @@ const EditPortfolio = () => {
               name='programmingLanguage'
               type='text'
               placeholder='use comma (e.g: c, c++, java, python)'
+              defaultValue={skill?.join(', ')}
             />
           </div>
 
@@ -213,7 +216,7 @@ const EditPortfolio = () => {
           <div className='md:col-span-2'>
             <label
               className='block text-sm font-medium text-gray-900'
-              for='experience'
+              htmlFor='experience'
             >
               Experience
             </label>
@@ -224,6 +227,7 @@ const EditPortfolio = () => {
               name='experience'
               type='text'
               placeholder='Tell your previous job experience'
+              defaultValue={experience}
             />
           </div>
 
@@ -231,7 +235,7 @@ const EditPortfolio = () => {
           <div className='md:col-span-2'>
             <label
               className='block text-sm font-medium text-gray-900'
-              for='objective'
+              htmlFor='objective'
             >
               Objective
             </label>
@@ -242,6 +246,7 @@ const EditPortfolio = () => {
               name='objective'
               type='text'
               placeholder='Tell your life objective or goal'
+              defaultValue={objective}
             />
           </div>
 
@@ -249,7 +254,7 @@ const EditPortfolio = () => {
           <div className='md:col-span-2'>
             <label
               className='block text-sm font-medium text-gray-900'
-              for='about'
+              htmlFor='about'
             >
               About
             </label>
@@ -260,6 +265,7 @@ const EditPortfolio = () => {
               name='about'
               rows='4'
               placeholder='Tell about yourself...'
+              defaultValue={about}
             ></textarea>
           </div>
 

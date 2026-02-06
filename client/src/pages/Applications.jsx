@@ -38,7 +38,7 @@ const Applications = () => {
       const { data } = await axios.post(
         `${backendUrl}/api/users/update-resume`,
         formData,
-        { headers: { Authorization: `Bearer ${token}` } }
+        { headers: { Authorization: `Bearer ${token}` } },
       );
 
       if (data.success) {
@@ -96,7 +96,7 @@ const Applications = () => {
         draggable: false,
         position: 'top-right',
         className: 'rounded-xl shadow-2xl',
-      }
+      },
     );
   };
 
@@ -147,15 +147,14 @@ const Applications = () => {
               >
                 Edit
               </button>
-
-              <button
-                onClick={() => navigate('/portfolio')}
-                className='px-4 py-2 rounded-md md:px-4 md:py-2 md:rounded-lg bg-neutral-950 text-gray-100 cursor-pointer'
-              >
-                Portfolio
-              </button>
             </div>
           )}
+          <button
+            onClick={() => navigate('/portfolio')}
+            className='px-4 py-2 rounded-md md:px-4 md:py-2 md:rounded-lg bg-neutral-950 text-gray-100 cursor-pointer'
+          >
+            Portfolio
+          </button>
         </div>
 
         <h2 className='text-xl font-semibold mb-4'>Job Applied</h2>
@@ -212,8 +211,8 @@ const Applications = () => {
                           job.status === 'Accepted'
                             ? 'bg-green-200'
                             : job.status === 'Rejected'
-                            ? 'bg-red-200'
-                            : 'bg-blue-200'
+                              ? 'bg-red-200'
+                              : 'bg-blue-200'
                         } px-4 py-1.5 rounded`}
                       >
                         {job.status}
@@ -227,7 +226,7 @@ const Applications = () => {
                       />
                     </td>
                   </tr>
-                ) : null
+                ) : null,
               )}
             </tbody>
           </table>

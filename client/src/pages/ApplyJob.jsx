@@ -35,10 +35,10 @@ const ApplyJob = () => {
     try {
       const { data } = await axios.get(`${backendUrl}/api/jobs/${id}`);
 
-      if (data.success) {
+      if (data?.success) {
         setJobData(data.job);
       } else {
-        toast.error(data.message);
+        toast.error(data?.message);
       }
     } catch (error) {
       toast.error(error.response?.data?.message || error.message);

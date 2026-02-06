@@ -13,16 +13,17 @@ import 'quill/dist/quill.snow.css';
 import Portfolio from './pages/Portfolio';
 import EditPortfolio from './pages/EditPortfolio';
 import ShareExperience from './pages/ShareExperience';
-import ErrorPage from './pages/ErrorPage';
 import { ToastContainer, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ShowUserProfile from './pages/ShowUserProfile';
 import SingleShareById from './pages/SingleShareById';
 import EditJobExperience from './pages/EditJobExperience';
 import JobPreparation from './pages/JobPreparation';
+import ProtectedRoute from './routes/ProtectedRoute';
+import OthersProtected from './routes/OthersProtected';
 
 function App() {
-  const { showRecruiterLogin, companyToken } = useContext(AppContext);
+  const { showRecruiterLogin } = useContext(AppContext);
 
   return (
     <div>
@@ -46,22 +47,21 @@ function App() {
         <Route path='/applications' element={<Applications />} />
         <Route path='/portfolio' element={<Portfolio />} />
         <Route path='/portfolio/edit-portfolio' element={<EditPortfolio />} />
-        {/* <Route path='/dashboard' element={<Dashboard />}>
-          {companyToken ? (
-            <>
-              <Route path='add-job' element={<AddJob />} />
-              <Route path='manage-job' element={<ManageJobs />} />
-              <Route path='view-applications' element={<ViewApplication />} />
-            </>
-          ) : null}
-        </Route> */}
-        {companyToken ? (
-          <Route path='/dashboard' element={<Dashboard />}>
-            <Route path='add-job' element={<AddJob />} />
-            <Route path='manage-job' element={<ManageJobs />} />
-            <Route path='view-applications' element={<ViewApplication />} />
-          </Route>
-        ) : null}
+
+        {/* dashboard */}
+        <Route
+          path='/dashboard'
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        >
+          <Route path='add-job' element={<AddJob />} />
+          <Route path='manage-job' element={<ManageJobs />} />
+          <Route path='view-applications' element={<ViewApplication />} />
+        </Route>
+
         <Route path='/share-experience' element={<ShareExperience />} />
         <Route path='/share-experience/:id' element={<SingleShareById />} />
         <Route path='/view-applications/:id' element={<ShowUserProfile />} />
@@ -70,7 +70,7 @@ function App() {
           element={<EditJobExperience />}
         />
         <Route path='/job-preparation' element={<JobPreparation />} />
-        {/* <Route path='*' element={<Navigate to='/' />} /> */}
+        <Route path='*' element={<Navigate to='/' />} />
       </Routes>
     </div>
   );

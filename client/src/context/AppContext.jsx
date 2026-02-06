@@ -24,6 +24,8 @@ export const AppContextProvider = (props) => {
 
   const [companyData, setCompanyData] = useState(null);
 
+  const [portfolioData, setPortfolioData] = useState(null);
+
   // isSignedIn
   const { isLoaded, user } = useUser();
   const { getToken } = useAuth();
@@ -100,6 +102,17 @@ export const AppContextProvider = (props) => {
     }
   };
 
+  // get portfolio info
+  const fetchPortfolio = async () => {
+    const res = await axios.get(`${backendUrl}/api/users/portfolio`, {
+      withCredentials: true,
+    });
+    setPortfolioData(res.data.portfolio);
+  };
+  useEffect(() => {
+    fetchPortfolio();
+  }, []);
+
   useEffect(() => {
     fetchJobs();
 
@@ -145,6 +158,8 @@ export const AppContextProvider = (props) => {
     setUserApplications,
     fetchUserData,
     fetchUserApplications,
+    portfolioData,
+    fetchPortfolio
   };
 
   return (

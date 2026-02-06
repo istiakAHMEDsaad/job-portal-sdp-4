@@ -2,6 +2,7 @@ import User from '../models/User.js';
 import JobApplication from '../models/JobApplication.js';
 import Job from '../models/Job.js';
 import { v2 as cloudinary } from 'cloudinary';
+import Portfolio from '../models/PortFolio.js';
 
 // Get user data
 export const getUserData = async (req, res) => {
@@ -52,7 +53,9 @@ export const applyForJob = async (req, res) => {
       date: Date.now(),
     });
 
-    return res.status(200).json({ success: true, message: 'Applied Successfully' });
+    return res
+      .status(200)
+      .json({ success: true, message: 'Applied Successfully' });
   } catch (error) {
     console.log(error.message);
     return res.status(400).json({ success: false, message: error.message });
@@ -100,6 +103,64 @@ export const updateUserResume = async (req, res) => {
     await userData.save();
 
     return res.status(200).json({ success: true, message: 'Resume Updated' });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(400).json({ success: false, message: error.message });
+  }
+};
+
+//!================== Extra Part ==================\\
+// Create Portfolio
+// export const createPortfolio = async (req, res) => {
+//   try {
+//     const userId = req.auth.userId;
+
+//     const existing = await Portfolio.findOne({ userId });
+
+//     if (existing) {
+//       return res.status(400).json({
+//         success: false,
+//         message: 'Portfolio already exists',
+//       });
+//     }
+
+//     const portfolio = await Portfolio.create({
+//       userId,
+//       ...req.body,
+//     });
+
+//     return res.status(201).json({ success: true, portfolio });
+//   } catch (error) {
+//     console.log(error.message);
+//     return res.status(400).json({ success: false, message: error.message });
+//   }
+// };
+
+// Get Portfolio
+export const getPortfolio = async (req, res) => {
+  try {
+    const userId = req.auth.userId;
+
+    const portfolio = await Portfolio.findOne({ userId });
+
+    return res.status(200).json({ success: true, portfolio });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(400).json({ success: false, message: error.message });
+  }
+};
+
+// Update Portfolio
+export const updatePortfolio = async (req, res) => {
+  try {
+    const userId = req.auth.userId;
+
+    const portfolio = await Portfolio.findOneAndUpdate({ userId }, req.body, {
+      new: true,
+      upsert: true,
+    });
+
+    return res.status(200).json({ success: true, portfolio });
   } catch (error) {
     console.log(error.message);
     return res.status(400).json({ success: false, message: error.message });
