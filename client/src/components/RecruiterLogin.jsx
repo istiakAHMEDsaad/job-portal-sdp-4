@@ -68,7 +68,7 @@ const RecruiterLogin = () => {
       }
     } catch (error) {
       // toast.error('Invalid email or password!');
-      toast.error(error.message);
+      // toast.error(error.message);
     }
   };
 

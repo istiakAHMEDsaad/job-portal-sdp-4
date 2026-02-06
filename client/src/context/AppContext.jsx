@@ -57,10 +57,10 @@ export const AppContextProvider = (props) => {
       if (data.success) {
         setCompanyData(data.company);
       } else {
-        toast.error(data.message);
+        // toast.error(data.message);
       }
     } catch (error) {
-      toast.error(error.response?.data?.message || error.message);
+      // toast.error(error.response?.data?.message || error.message);
     }
   };
 
