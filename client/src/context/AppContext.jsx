@@ -71,9 +71,7 @@ export const AppContextProvider = (props) => {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      console.log(data);
-
-      if (data.success) {
+      if (data?.success) {
         setUserData(data.user);
       } else {
         toast.error(data.message);

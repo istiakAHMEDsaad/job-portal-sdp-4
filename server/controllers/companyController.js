@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt';
 import { v2 as cloudinary } from 'cloudinary';
 import generateToken from '../utils/generateToken.js';
 import Job from '../models/Job.js';
+import JobApplication from '../models/JobApplication.js';
 
 // Register a new company
 export const registerCompany = async (req, res) => {
@@ -38,7 +39,7 @@ export const registerCompany = async (req, res) => {
       image: imageUpload.secure_url,
     });
 
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       company: {
         _id: company._id,
@@ -50,7 +51,7 @@ export const registerCompany = async (req, res) => {
     });
   } catch (error) {
     console.log(error.message);
-    res.status(400).json({
+    return res.status(400).json({
       success: false,
       message: error.message,
     });
@@ -88,7 +89,15 @@ export const loginCompany = async (req, res) => {
 };
 
 // Get company data
-export const getCompanyData = async (req, res) => {};
+export const getCompanyData = async (req, res) => {
+  try {
+    const company = req.company;
+    res.status(200).json({ success: true, company });
+  } catch (error) {
+    console.log(error.message);
+    res.status(404).json({ success: false, message: error.message });
+  }
+};
 
 // Post a new job
 export const postJob = async (req, res) => {
@@ -117,13 +126,66 @@ export const postJob = async (req, res) => {
 };
 
 // Get company job applicants
-export const getCompanyJobApplicants = async (req, res) => {};
+export const getCompanyJobApplicants = async (req, res) => {
+  try {
+    const companyId = req.company._id;
+
+    // Find job applications for the user and populate related data
+    const applications = await JobApplication.find({ companyId })
+      .populate('userId', 'name image resume')
+      .populate('jobId', 'title location category level salary')
+      .exec();
+
+    return res.status(200).json({ success: true, applications });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(400).json({ success: false, message: error.message });
+  }
+};
 
 // Get company posted jobs
-export const getCompanyPostedJobs = async (req, res) => {};
+export const getCompanyPostedJobs = async (req, res) => {
+  try {
+    const companyId = req.company._id;
+
+    const jobs = await Job.find({ companyId });
+
+    // No. of applicants info in database
+    const jobsData = await Promise.all(
+      jobs.map(async (job) => {
+        const applicants = await JobApplication.find({ jobId: job._id });
+
+        return { ...job.toObject(), applicants: applicants.length };
+      }),
+    );
+
+    res.status(200).json({ success: true, jobsData });
+  } catch (error) {
+    console.log(error.message);
+    res.status().json({ success: false, message: error.message });
+  }
+};
 
 // Change job application status
 export const ChangeJobApplicationsStatus = async (req, res) => {};
 
 // Change visibility
-export const changeVisibility = async (req, res) => {};
+export const changeVisibility = async (req, res) => {
+  try {
+    const { id } = req.body;
+
+    const companyId = req.company._id;
+
+    const job = await Job.findById(id);
+
+    if (companyId.toString() === job.companyId.toString()) {
+      job.visible = !job.visible;
+    }
+
+    await job.save();
+    res.status(200).json({ success: true, job });
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).json({ success: false, message: error.message });
+  }
+};

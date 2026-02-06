@@ -73,6 +73,7 @@ export const assets = {
 };
 
 export const JobCategories = [
+  "Select",
   "Programming",
   "Data Science",
   "Designing",
@@ -80,9 +81,11 @@ export const JobCategories = [
   "Management",
   "Marketing",
   "Cybersecurity",
+  "Others"
 ];
 
 export const JobLocations = [
+  "Select",
   "Mirpur",
   "Dhanmondi",
   "Gulshan",

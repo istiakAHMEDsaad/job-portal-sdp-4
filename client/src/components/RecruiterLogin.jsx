@@ -3,7 +3,7 @@ import { assets } from '../assets/assets';
 import { AppContext } from '../context/AppContext';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { toast, Slide } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const RecruiterLogin = () => {
   const navigate = useNavigate();
@@ -53,7 +53,7 @@ const RecruiterLogin = () => {
 
         const { data } = await axios.post(
           `${backendUrl}/api/company/register`,
-          formData
+          formData,
         );
 
         if (data?.success) {
@@ -67,7 +67,8 @@ const RecruiterLogin = () => {
         }
       }
     } catch (error) {
-      toast.error('Invalid email or password!');
+      // toast.error('Invalid email or password!');
+      toast.error(error.message);
     }
   };
 
@@ -156,7 +157,7 @@ const RecruiterLogin = () => {
           </>
         )}
         {state === 'Login' && (
-          <p className='text-sm text-blue-600 mt-4 cursor-pointer'>
+          <p className='text-sm text-blue-600 mt-4 cursor-pointer hover:underline transition inline-block'>
             Forget Password
           </p>
         )}
@@ -164,13 +165,13 @@ const RecruiterLogin = () => {
         {/* submit button */}
         <button
           type='submit'
-          className='bg-blue-600 w-full text-white py-2 rounded-full mt-4'
+          className='bg-blue-600 hover:bg-blue-600/90 transition-colors w-full text-white py-2 rounded-full mt-4 cursor-pointer'
         >
           {state === 'Login'
-            ? 'login'
+            ? 'Login'
             : isTextDataSubmitted
-            ? 'create account'
-            : 'next'}
+              ? 'create account'
+              : 'Next'}
         </button>
 
         {state === 'Login' ? (
@@ -196,7 +197,7 @@ const RecruiterLogin = () => {
         )}
         <img
           onClick={() => setShowRecruiterLogin(false)}
-          className='absolute top-5 right-5 cursor-pointer bg-red-200 p-1 rounded-full'
+          className='absolute top-5 right-5 cursor-pointer bg-red-100 hover:bg-red-400 transition-colors p-1 rounded-full'
           src={assets.cross_icon}
           alt='x'
         />

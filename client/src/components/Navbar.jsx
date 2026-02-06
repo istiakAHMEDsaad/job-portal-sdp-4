@@ -36,10 +36,10 @@ const Navbar = () => {
               <p> | </p>
               <p className='flex items-center gap-1'>
                 Hi,
-                <span className='italic'>
-                  {user?.firstName && user?.lastName
-                    ? user?.firstName + ' ' + user?.lastName
-                    : user?.username.slice(0, 9)}
+                <span className='italic capitalize'>
+                  {user?.username
+                    ? user.username
+                    : user?.firstName + ' ' + user?.lastName}
                 </span>
               </p>
             </div>
@@ -55,7 +55,7 @@ const Navbar = () => {
             </button>
             <button
               onClick={() => openSignIn()}
-              className='bg-blue-600 hover:bg-blue-600/95 transition-colors text-white px-6 sm:px-9 py-2 rounded-full cursor-pointer'
+              className='bg-blue-600 hover:bg-blue-500 transition-colors text-white px-6 sm:px-9 py-2 rounded-full cursor-pointer'
             >
               Login
             </button>

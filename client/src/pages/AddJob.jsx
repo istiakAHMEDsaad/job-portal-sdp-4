@@ -112,6 +112,7 @@ const AddJob = () => {
             className='w-full px-3 py-2 border-2 border-gray-300 rounded'
             onChange={(e) => setLevel(e.target.value)}
           >
+            <option value=''>Select</option>
             <option value='Internship'>Internship</option>
             <option value='Remote'>Remote</option>
             <option value='Part Time'>Part Time</option>
